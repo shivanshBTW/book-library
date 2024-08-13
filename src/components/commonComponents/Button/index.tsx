@@ -4,10 +4,10 @@ const { buttonContainerRoot, buttonStyle, fullWidthStyle } = styles;
 
 interface ButtonProps {
   className?: string;
-  style?: React.CSSProperties;
   fullWidth?: boolean;
-  children: React.ReactNode;
+  children: React.ReactNode | string;
   disabled?: boolean;
+  onClick?: (event: React.MouseEvent<Element> | undefined) => void;
 }
 
 function Button(props: ButtonProps) {

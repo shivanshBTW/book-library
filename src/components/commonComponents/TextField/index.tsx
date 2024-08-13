@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import passwordEye from '../../../assets/images/login/passwordEye.svg';
 import passwordEyeClosed from '../../../assets/images/login/passwordEyeClosed.svg';
-import styles from '@/components/commonComponents/TextField.module.scss';
+import styles from 'src/components/commonComponents/TextField.module.scss';
 import { useState } from 'react';
 
 const {
