@@ -1,17 +1,37 @@
-$background: #131319;
+// dark
+// $background: #131319;
 
-$paper: #27292d;
-$paper1: #191920;
+// $paper: #27292d;
+// $paper1: #191920;
 
-$mainTextColor: #ffffff;
-$secondaryTextColor: #6b6c70;
-$tertiaryTextColor: #7f8084;
-$posterNameColor: #c5c7ca;
-$linkColor: #c6c7c9;
+// $mainTextColor: #ffffff;
+// $secondaryTextColor: #6b6c70;
+// $tertiaryTextColor: #7f8084;
+// $posterNameColor: #c5c7ca;
+// $linkColor: #c6c7c9;
 
-$primaryButtonColor: #4a96ff;
-$primaryButtonColorDisabled: #b3d1ff;
-$mainTextColorDisabled: #ffffff;
+// $primaryButtonColor: #4a96ff;
+// $primaryButtonColorDisabled: #b3d1ff;
+// $mainTextColorDisabled: #ffffff;
+
+//light
+// Backgrounds
+$background: #f5f5f5; // Lightened from #131319
+$paper: #ffffff; // Lightened from #27292d
+$paper1: #f0f0f0; // Lightened from #191920
+
+// Text Colors
+$mainTextColor: #000000; // Darkened from #ffffff
+$secondaryTextColor: #4f4f4f; // Darkened from #6b6c70
+$tertiaryTextColor: #5a5a5a; // Darkened from #7f8084
+$posterNameColor: #333333; // Darkened from #c5c7ca
+$linkColor: #0000ee; // Lightened from #c6c7c9
+
+// Button Colors
+$primaryButtonColor: #0056b3; // Darkened from #4a96ff
+$primaryButtonColorDisabled: #cce0ff; // Lightened from #b3d1ff
+$primaryButtonTextColor: #ffffff; // Darkened from #ffffff
+$mainTextColorDisabled: #aaaaaa; // Lightened from #ffffff
 
 $fontWeightLight: 300;
 $fontWeightRegular: 400;
@@ -21,14 +41,14 @@ $fontWeightBold: 700;
 $fontWeightExtraBold: 800;
 
 @mixin h1 {
-    font-size: clamp(5rem, 2.25rem + 3.5vw, 7rem);
+    font-size: clamp(2.5rem, 1.125rem + 3.5vw, 3.5em);
     font-weight: 600;
     line-height: 1.1142857142857143;
     letter-spacing: -0.2;
 }
 
 @mixin h2 {
-    font-size: clamp(3rem, 2rem + 1.4286vw, 3.5rem);
+    font-size: clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem);
     font-weight: 600;
     line-height: 1.2222222222222223;
     letter-spacing: -0.2;
@@ -36,93 +56,93 @@ $fontWeightExtraBold: 800;
 }
 
 @mixin h3 {
-    font-size: 3.5rem;
+    font-size: 2.25rem;
+    font-weight: 400;
     line-height: 1.2222222222222223;
     letter-spacing: 0.2;
-    font-weight: 400;
     @media (max-width: 768px) {
         font-size: 2rem;
     }
 }
 
 @mixin h4 {
-    font-size: 2.75rem;
+    font-size: 1.875rem;
+    font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.2;
-    font-weight: 400;
     @media (max-width: 768px) {
         font-size: 2rem;
     }
 }
 
 @mixin h5 {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.1;
     color: hsl(210, 100%, 70%);
-    font-weight: 400;
 }
 
 @mixin h6 {
-    font-size: 2.5rem;
-    line-height: 1.5;
+    font-size: 1.25rem;
     font-weight: 500;
+    line-height: 1.5;
     @media (max-width: 768px) {
         font-size: 1.5rem;
     }
 }
 
 @mixin button {
-    font-size: 1.75rem;
-    text-transform: initial;
+    font-size: 0.875rem;
     font-weight: 700;
+    text-transform: initial;
     letter-spacing: 0;
     line-height: 1.75;
 }
 
 @mixin subtitle1 {
-    font-size: 2rem;
+    font-size: 1.125rem;
+    font-weight: 500;
     line-height: 1.3333333333333333;
     letter-spacing: 0;
-    font-weight: 500;
 }
 
 @mixin subtitle2 {
-    font-size: 1.75rem;
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.57;
 }
 
 @mixin body1 {
-    font-size: 2rem;
+    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
-    font-weight: 400;
     @media (max-width: 768px) {
         font-size: 1.25rem;
     }
 }
 
 @mixin body2 {
-    font-size: 1.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
-    font-weight: 400;
     @media (max-width: 768px) {
         font-size: 7px;
     }
 }
 
 @mixin caption {
-    font-size: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
     line-height: 3rem;
     letter-spacing: 0;
-    font-weight: 700;
 }
 
 @mixin overline {
+    font-size: 0.75rem;
     font-weight: 400;
-    font-size: 1.5rem;
     line-height: 2.66;
     text-transform: uppercase;
 }

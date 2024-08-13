@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import styles from '~/components/commonComponents/Button.module.scss';
-
 const { buttonContainerRoot, buttonStyle, fullWidthStyle } = styles;
 
 interface ButtonProps {
