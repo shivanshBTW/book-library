@@ -1,0 +1,43 @@
+@use "~/base";
+
+.textFieldRoot {
+}
+
+.labelStyle {
+    @include h6;
+    @include fontWeightRegular;
+    margin-bottom: 1.25rem;
+}
+
+.inputComponentContainer {
+    position: relative;
+}
+
+.inputStyle {
+    padding: 2rem 3rem;
+    background: $paper;
+    border: 1px solid #939393;
+    border-radius: 0.5rem;
+    outline: none;
+    @include h6;
+    color: $mainTextColor;
+    &::placeholder {
+        color: $tertiaryTextColor;
+    }
+}
+.inputStyle.fullWidthStyle {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.viewPasswordToggleStyle {
+    position: absolute;
+    right: 3rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 3rem;
+    @media (max-width: 768px) {
+        right: 1.5rem;
+    }
+}

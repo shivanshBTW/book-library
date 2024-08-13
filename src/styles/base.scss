@@ -1,0 +1,136 @@
+$background: #131319;
+
+$paper: #27292d;
+$paper1: #191920;
+
+$mainTextColor: #ffffff;
+$secondaryTextColor: #6b6c70;
+$tertiaryTextColor: #7f8084;
+$posterNameColor: #c5c7ca;
+$linkColor: #c6c7c9;
+
+$primaryButtonColor: #4a96ff;
+$primaryButtonColorDisabled: #b3d1ff;
+$mainTextColorDisabled: #ffffff;
+
+$fontWeightLight: 300;
+$fontWeightRegular: 400;
+$fontWeightMedium: 500;
+$fontWeightSemiBold: 600;
+$fontWeightBold: 700;
+$fontWeightExtraBold: 800;
+
+@mixin h1 {
+    font-size: clamp(5rem, 2.25rem + 3.5vw, 7rem);
+    font-weight: 600;
+    line-height: 1.1142857142857143;
+    letter-spacing: -0.2;
+}
+
+@mixin h2 {
+    font-size: clamp(3rem, 2rem + 1.4286vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.2222222222222223;
+    letter-spacing: -0.2;
+    color: hsl(215, 15%, 92%);
+}
+
+@mixin h3 {
+    font-size: 3.5rem;
+    line-height: 1.2222222222222223;
+    letter-spacing: 0.2;
+    font-weight: 400;
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+@mixin h4 {
+    font-size: 2.75rem;
+    line-height: 1.5;
+    letter-spacing: 0.2;
+    font-weight: 400;
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
+}
+
+@mixin h5 {
+    font-size: 2rem;
+    line-height: 1.5;
+    letter-spacing: 0.1;
+    color: hsl(210, 100%, 70%);
+    font-weight: 400;
+}
+
+@mixin h6 {
+    font-size: 2.5rem;
+    line-height: 1.5;
+    font-weight: 500;
+    @media (max-width: 768px) {
+        font-size: 1.5rem;
+    }
+}
+
+@mixin button {
+    font-size: 1.75rem;
+    text-transform: initial;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.75;
+}
+
+@mixin subtitle1 {
+    font-size: 2rem;
+    line-height: 1.3333333333333333;
+    letter-spacing: 0;
+    font-weight: 500;
+}
+
+@mixin subtitle2 {
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.57;
+}
+
+@mixin body1 {
+    font-size: 2rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-weight: 400;
+    @media (max-width: 768px) {
+        font-size: 1.25rem;
+    }
+}
+
+@mixin body2 {
+    font-size: 1.75rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-weight: 400;
+    @media (max-width: 768px) {
+        font-size: 7px;
+    }
+}
+
+@mixin caption {
+    font-size: 1.5rem;
+    line-height: 3rem;
+    letter-spacing: 0;
+    font-weight: 700;
+}
+
+@mixin overline {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 2.66;
+    text-transform: uppercase;
+}
+
+@mixin inherit {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+}

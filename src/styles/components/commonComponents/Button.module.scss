@@ -1,0 +1,34 @@
+@use "~/base";
+
+.buttonContainerRoot {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonStyle {
+    padding: 1.5rem;
+    min-width: 15rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    @include base.h6;
+    font-weight: base.$fontWeightExtraBold;
+    background: base.$primaryButtonColor;
+    color: base.$mainTextColor;
+    border-radius: 1.25rem;
+    border-radius: 5px;
+}
+
+.buttonStyle.fullWidthStyle {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.buttonStyle:disabled {
+    background: base.$primaryButtonColorDisabled;
+    cursor: not-allowed;
+    color: base.$mainTextColorDisabled;
+}
