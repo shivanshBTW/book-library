@@ -18,10 +18,9 @@
     background: base.$primaryButtonColor;
     color: base.$primaryButtonTextColor;
     border-radius: 5px;
-}
-
-.selectorButtonStyle.selectedButtonStyle {
-    background: base.$primaryButtonColorDisabled;
-    color: base.$mainTextColor;
-    box-shadow: inset 0px 0px 0px 2px base.$primaryButtonColor;
+    &.selectedButtonStyle {
+        background: base.$primaryButtonColorDisabled;
+        color: base.$mainTextColor;
+        box-shadow: inset 0px 0px 0px 2px base.$primaryButtonColor;
+    }
 }

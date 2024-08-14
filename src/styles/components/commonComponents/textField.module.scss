@@ -24,10 +24,10 @@
     &::placeholder {
         color: $tertiaryTextColor;
     }
-}
-.inputStyle.fullWidthStyle {
-    width: 100%;
-    box-sizing: border-box;
+    &.fullWidthStyle {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 .viewPasswordToggleStyle {

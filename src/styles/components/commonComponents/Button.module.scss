@@ -10,15 +10,13 @@
     background: base.$primaryButtonColor;
     color: base.$primaryButtonTextColor;
     border-radius: 5px;
-}
-
-.buttonStyle.fullWidthStyle {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.buttonStyle:disabled {
-    background: base.$primaryButtonColorDisabled;
-    cursor: not-allowed;
-    color: base.$mainTextColorDisabled;
+    &.fullWidthStyle {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    &:disabled {
+        background: base.$primaryButtonColorDisabled;
+        cursor: not-allowed;
+        color: base.$mainTextColorDisabled;
+    }
 }

@@ -64,33 +64,39 @@
     text-align: center;
     cursor: pointer;
     border-right: 1px solid base.$borderColorLight;
-
     transition: background-color 0.2s ease;
-}
-.actionButtonStyle:last-of-type {
-    border-right: none;
-}
-.actionButtonStyle:hover {
-    background-color: base.$paper1;
+
+    &:last-of-type {
+        border-right: none;
+    }
+    &:hover {
+        background-color: base.$paper1;
+    }
 }
 
-.likeButtonStyle.likeButtonSelected,
-.likeButtonStyle:hover {
-    background-color: #ff8488;
-    color: white;
-}
+.likeButtonStyle {
+    &.likeButtonSelected,
+    &:hover {
+        background-color: #ff8488;
+        color: white;
+    }
 
-.likeButtonStyle.likeButtonSelected:hover {
-    background-color: base.$paper;
-    color: base.$mainTextColor;
-}
+    &.likeButtonSelected {
+        &:hover {
+            background-color: base.$paper;
+            color: base.$mainTextColor;
+        }
+    }
 
-.likeButtonStyle:hover .heartIconStyle.isLikedStyle {
-    display: none;
-}
-.likeButtonStyle .heartOffIconStyle {
-    display: none;
-}
-.likeButtonStyle:hover .heartOffIconStyle.isLikedStyle {
-    display: inline-block;
+    .heartOffIconStyle {
+        display: none;
+    }
+    &:hover {
+        .heartIconStyle.isLikedStyle {
+            display: none;
+        }
+        .heartOffIconStyle.isLikedStyle {
+            display: inline-block;
+        }
+    }
 }
