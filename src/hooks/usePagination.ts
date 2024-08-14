@@ -12,6 +12,8 @@ interface PaginationReturn<T> {
   goToPage: (page: number) => void;
   goToNextPage: () => void;
   goToPreviousPage: () => void;
+  goToFirstPage: () => void;
+  goToLastPage: () => void;
   isPaginationRequired: boolean;
   isFirstPage: boolean;
   isLastPage: boolean;
@@ -21,7 +23,6 @@ function usePagination<T>({
   itemList,
   itemsPerPage = 10,
 }: PaginationProps<T>): PaginationReturn<T> {
-  const [pageItems, setPageItems] = useState<Array<T>>([]);
   const [currentPage, goToPage] = useState(1);
 
   const isPaginationRequired = itemList.length > itemsPerPage;
@@ -40,20 +41,23 @@ function usePagination<T>({
     if (!isFirstPage) goToPage(currentPage - 1);
   };
 
-  const getPageItems = useCallback(() => {
-    if (!isPaginationRequired) return itemList;
+  const goToFirstPage = () => {
+    goToPage(1);
+  };
 
-    const pageItems: T[] = itemList.slice(
+  const goToLastPage = () => {
+    goToPage(totalPages);
+  };
+
+  let pageItems: T[];
+  if (!isPaginationRequired) {
+    pageItems = itemList;
+  } else {
+    pageItems = itemList.slice(
       startElementIndex,
       startElementIndex + itemsPerPage
     );
-
-    return pageItems;
-  }, [itemList, isPaginationRequired, startElementIndex, itemsPerPage]);
-
-  useEffect(() => {
-    setPageItems(getPageItems());
-  }, [itemList, currentPage, getPageItems]);
+  }
 
   return {
     pageItems,
@@ -62,6 +66,8 @@ function usePagination<T>({
     goToPage,
     goToNextPage,
     goToPreviousPage,
+    goToFirstPage,
+    goToLastPage,
     isPaginationRequired,
     isFirstPage,
     isLastPage,

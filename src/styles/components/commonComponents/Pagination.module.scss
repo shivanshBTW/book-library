@@ -1,0 +1,27 @@
+@use "~/base";
+
+.root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    column-gap: 0.5rem;
+}
+
+.selectorButtonStyle {
+    padding: 0.2rem;
+    min-width: 3rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    @include base.button;
+    background: base.$primaryButtonColor;
+    color: base.$primaryButtonTextColor;
+    border-radius: 5px;
+}
+
+.selectorButtonStyle.selectedButtonStyle {
+    background: base.$primaryButtonColorDisabled;
+    color: base.$mainTextColor;
+    box-shadow: inset 0px 0px 0px 2px base.$primaryButtonColor;
+}

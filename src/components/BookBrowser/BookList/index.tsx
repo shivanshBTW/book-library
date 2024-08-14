@@ -30,6 +30,8 @@ function BookList() {
     goToPage,
     goToNextPage,
     goToPreviousPage,
+    goToFirstPage,
+    goToLastPage,
     isPaginationRequired,
     isFirstPage,
     isLastPage,
@@ -52,11 +54,7 @@ function BookList() {
       })}
 
       {isPaginationRequired ? (
-        <PaginationSelector
-          totalItems={bookList.length}
-          itemsPerPage={itemsPerPage}
-          {...paginationState}
-        />
+        <PaginationSelector {...paginationState} />
       ) : null}
     </div>
   );
