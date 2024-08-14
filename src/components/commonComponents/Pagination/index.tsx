@@ -55,7 +55,6 @@ const PaginationSelector = <T,>({
         </Button>
       );
     }
-
     return buttons;
   };
 

@@ -19,7 +19,7 @@ function BookList() {
     queryKey: ['fetchBookList'],
     queryFn: fetchBooks,
     // staleTime: 60 * 60 * 1000, // 1 hour
-    gcTime: 30 * 60 * 1000, // 30 minutes
+    // gcTime: 30 * 60 * 1000, // 30 minutes
   });
   console.log('bookList in comp', bookList);
 

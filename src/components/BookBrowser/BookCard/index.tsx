@@ -1,6 +1,14 @@
+import {
+  LuHeart,
+  LuHeartOff,
+  LuImageOff,
+  LuPenLine,
+  LuTrash2,
+} from 'react-icons/lu';
+
 import clsx from 'clsx';
-import { FaRegHeart } from 'react-icons/fa';
 import styles from '~/components/BookBrowser/BookCard.module.scss';
+import { useState } from 'react';
 
 const {
   root,
@@ -10,8 +18,12 @@ const {
   authorNameContainerStyle,
   authorNameStyle,
   buttonGroupContainer,
+  actionButtonStyle,
   likeButtonStyle,
   likeButtonSelected,
+  heartIconStyle,
+  heartOffIconStyle,
+  isLikedStyle,
 } = styles;
 
 interface BookCardProps {
@@ -19,13 +31,36 @@ interface BookCardProps {
 }
 
 const BookCard: React.FC<BookCardProps> = ({ bookData }) => {
-  const { title, author, cover, description, id, publicationDate } = bookData;
+  const {
+    title,
+    author,
+    cover,
+    description,
+    publicationDate,
+    isCustomBook = true,
+  } = bookData;
+
+  const [imageError, setImageError] = useState(false);
+  const handleImageError = () => setImageError(true);
   console.log('bookData', bookData);
+
+  //   const isLiked = false;
+  const isLiked = true;
+
   return (
     <div className={root}>
       <div>
         <div className={coverImageContainer}>
-          <img src={cover} alt={'cover'} className={coverImage} />
+          {imageError ? (
+            <LuImageOff />
+          ) : (
+            <img
+              src={cover}
+              alt={'cover'}
+              className={coverImage}
+              onError={handleImageError}
+            />
+          )}
         </div>
         <div className={bookTitleStyle}>{title}</div>
       </div>
@@ -35,12 +70,31 @@ const BookCard: React.FC<BookCardProps> = ({ bookData }) => {
         </div>
         <div className={buttonGroupContainer}>
           <div
-            className={clsx(likeButtonStyle, {
-              [likeButtonSelected]: true,
+            className={clsx(actionButtonStyle, likeButtonStyle, {
+              [likeButtonSelected]: isLiked,
             })}
           >
-            <FaRegHeart />
+            <LuHeart
+              className={clsx(heartIconStyle, {
+                [isLikedStyle]: isLiked,
+              })}
+            />
+            <LuHeartOff
+              className={clsx(heartOffIconStyle, {
+                [isLikedStyle]: isLiked,
+              })}
+            />
           </div>
+          {isCustomBook ? (
+            <>
+              <div className={actionButtonStyle}>
+                <LuPenLine />
+              </div>
+              <div className={actionButtonStyle}>
+                <LuTrash2 />
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </div>

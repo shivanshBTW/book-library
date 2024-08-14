@@ -5,4 +5,5 @@ interface BookData {
   description: string;
   cover: string;
   publicationDate: string;
+  isCustomBook?: boolean;
 }

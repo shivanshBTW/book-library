@@ -13,7 +13,8 @@
 }
 
 .coverImageContainer {
-    margin: 1rem;
+    margin: 0.75rem;
+    margin-bottom: 0.25rem;
     min-width: 10rem;
     max-width: 100%;
     height: 15rem;
@@ -56,13 +57,40 @@
     overflow: hidden;
 }
 
-.likeButtonStyle {
+.actionButtonStyle {
     display: inline-block;
     padding: 0.5rem;
     flex-grow: 1;
     text-align: center;
+    cursor: pointer;
+    border-right: 1px solid base.$borderColorLight;
+
+    transition: background-color 0.2s ease;
 }
-.likeButtonStyle.likeButtonSelected {
+.actionButtonStyle:last-of-type {
+    border-right: none;
+}
+.actionButtonStyle:hover {
+    background-color: base.$paper1;
+}
+
+.likeButtonStyle.likeButtonSelected,
+.likeButtonStyle:hover {
     background-color: #ff8488;
     color: white;
+}
+
+.likeButtonStyle.likeButtonSelected:hover {
+    background-color: base.$paper;
+    color: base.$mainTextColor;
+}
+
+.likeButtonStyle:hover .heartIconStyle.isLikedStyle {
+    display: none;
+}
+.likeButtonStyle .heartOffIconStyle {
+    display: none;
+}
+.likeButtonStyle:hover .heartOffIconStyle.isLikedStyle {
+    display: inline-block;
 }
