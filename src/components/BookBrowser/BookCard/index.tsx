@@ -1,3 +1,5 @@
+// I used this library as this supports ES6 imports and tree shaking,
+// will take 1.7k if we use the whole library
 import {
   LuHeart,
   LuHeartOff,
