@@ -12,3 +12,11 @@ body {
   background: $background;
   color: $mainTextColor;
 }
+
+.loaderAnimation {
+  background-color: #ddd;
+  background: linear-gradient(to right, #ddd 0%, #eee 20%, #ddd 40%, #ddd 100%);
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite;
+  background-size: 200% 100%;
+}

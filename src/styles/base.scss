@@ -27,6 +27,10 @@ $tertiaryTextColor: #5a5a5a; // Darkened from #7f8084
 $posterNameColor: #333333; // Darkened from #c5c7ca
 $linkColor: #0000ee; // Lightened from #c6c7c9
 
+//border-color
+$borderColor: #939393;
+$borderColorLight: rgb(232, 234, 238);
+
 // Button Colors
 $primaryButtonColor: #0056b3; // Darkened from #4a96ff
 $primaryButtonColorDisabled: #cce0ff; // Lightened from #b3d1ff
@@ -136,7 +140,7 @@ $fontWeightExtraBold: 800;
 @mixin caption {
     font-size: 0.75rem;
     font-weight: 700;
-    line-height: 3rem;
+    line-height: 0.75rem;
     letter-spacing: 0;
 }
 

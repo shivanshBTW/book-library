@@ -1,3 +1,5 @@
+@use "~/base";
+
 .root {
     background-color: rgba(255, 255, 255, 0.8);
     display: flex;
@@ -6,7 +8,7 @@
     align-items: center;
     padding: 0.5rem 1rem;
     border-style: solid;
-    border-color: hsl(215, 15%, 92%);
+    border-color: base.$borderColorLight;
     border-width: 0;
     border-bottom-width: thin;
     backdrop-filter: blur(8px);

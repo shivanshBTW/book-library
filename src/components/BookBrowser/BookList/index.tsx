@@ -6,7 +6,7 @@ import styles from '~/components/BookBrowser/BookList.module.scss';
 import usePagination from 'src/hooks/usePagination';
 import { useQuery } from '@tanstack/react-query';
 
-const { root, errorContainer } = styles;
+const { root, cardListContainer, errorContainer } = styles;
 
 function BookList() {
   const itemsPerPage = 5;
@@ -18,7 +18,7 @@ function BookList() {
   } = useQuery<BookData[]>({
     queryKey: ['fetchBookList'],
     queryFn: fetchBooks,
-    staleTime: 60 * 60 * 1000, // 1 hour
+    // staleTime: 60 * 60 * 1000, // 1 hour
     gcTime: 30 * 60 * 1000, // 30 minutes
   });
   console.log('bookList in comp', bookList);
@@ -50,9 +50,11 @@ function BookList() {
 
   return (
     <div className={root}>
-      {pageItems?.map((bookData) => {
-        return <BookCard bookData={bookData} key={bookData?.id} />;
-      })}
+      <div className={cardListContainer}>
+        {pageItems?.map((bookData) => {
+          return <BookCard bookData={bookData} key={bookData?.id} />;
+        })}
+      </div>
 
       {isPaginationRequired ? (
         <PaginationSelector<BookData>

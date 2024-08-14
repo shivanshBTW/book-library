@@ -16,7 +16,7 @@
 .inputStyle {
     padding: 2rem 3rem;
     background: $paper;
-    border: 1px solid #939393;
+    border: 1px solid base.$borderColor;
     border-radius: 0.5rem;
     outline: none;
     @include h6;

@@ -1,6 +1,18 @@
+import clsx from 'clsx';
+import { FaRegHeart } from 'react-icons/fa';
 import styles from '~/components/BookBrowser/BookCard.module.scss';
 
-const { root } = styles;
+const {
+  root,
+  coverImageContainer,
+  coverImage,
+  bookTitleStyle,
+  authorNameContainerStyle,
+  authorNameStyle,
+  buttonGroupContainer,
+  likeButtonStyle,
+  likeButtonSelected,
+} = styles;
 
 interface BookCardProps {
   bookData: BookData;
@@ -11,8 +23,26 @@ const BookCard: React.FC<BookCardProps> = ({ bookData }) => {
   console.log('bookData', bookData);
   return (
     <div className={root}>
-      <img src={cover} alt="" />
-      {title}
+      <div>
+        <div className={coverImageContainer}>
+          <img src={cover} alt={'cover'} className={coverImage} />
+        </div>
+        <div className={bookTitleStyle}>{title}</div>
+      </div>
+      <div>
+        <div className={authorNameContainerStyle}>
+          by <span className={authorNameStyle}>{author}</span>
+        </div>
+        <div className={buttonGroupContainer}>
+          <div
+            className={clsx(likeButtonStyle, {
+              [likeButtonSelected]: true,
+            })}
+          >
+            <FaRegHeart />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
