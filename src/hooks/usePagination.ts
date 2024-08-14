@@ -2,14 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 
 interface PaginationProps<T> {
   itemList: T[];
-  maxItemsPerPage?: number;
+  itemsPerPage?: number;
 }
 
 interface PaginationReturn<T> {
   pageItems: T[];
   totalPages: number;
   currentPage: number;
-  setCurrentPage: (page: number) => void;
+  goToPage: (page: number) => void;
   goToNextPage: () => void;
   goToPreviousPage: () => void;
   isPaginationRequired: boolean;
@@ -19,25 +19,25 @@ interface PaginationReturn<T> {
 
 function usePagination<T>({
   itemList,
-  maxItemsPerPage = 10,
+  itemsPerPage = 10,
 }: PaginationProps<T>): PaginationReturn<T> {
   const [pageItems, setPageItems] = useState<Array<T>>([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, goToPage] = useState(1);
 
-  const isPaginationRequired = itemList.length > maxItemsPerPage;
-  const totalPages = Math.ceil(itemList.length / maxItemsPerPage);
+  const isPaginationRequired = itemList.length > itemsPerPage;
+  const totalPages = Math.ceil(itemList.length / itemsPerPage);
 
-  const startElementIndex = (currentPage - 1) * maxItemsPerPage;
+  const startElementIndex = (currentPage - 1) * itemsPerPage;
 
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === totalPages;
 
   const goToNextPage = () => {
-    if (!isLastPage) setCurrentPage(currentPage + 1);
+    if (!isLastPage) goToPage(currentPage + 1);
   };
 
   const goToPreviousPage = () => {
-    if (!isFirstPage) setCurrentPage(currentPage - 1);
+    if (!isFirstPage) goToPage(currentPage - 1);
   };
 
   const getPageItems = useCallback(() => {
@@ -45,11 +45,11 @@ function usePagination<T>({
 
     const pageItems: T[] = itemList.slice(
       startElementIndex,
-      startElementIndex + maxItemsPerPage
+      startElementIndex + itemsPerPage
     );
 
     return pageItems;
-  }, [itemList, isPaginationRequired, startElementIndex, maxItemsPerPage]);
+  }, [itemList, isPaginationRequired, startElementIndex, itemsPerPage]);
 
   useEffect(() => {
     setPageItems(getPageItems());
@@ -59,7 +59,7 @@ function usePagination<T>({
     pageItems,
     totalPages,
     currentPage,
-    setCurrentPage,
+    goToPage,
     goToNextPage,
     goToPreviousPage,
     isPaginationRequired,
