@@ -1,3 +1,4 @@
+import BookCard from 'src/components/BookBrowser/BookCard';
 import Button from 'src/components/commonComponents/Button';
 import PaginationSelector from 'src/components/commonComponents/Pagination';
 import { fetchBooks } from 'src/service/fetchBooks';
@@ -50,7 +51,7 @@ function BookList() {
   return (
     <div className={root}>
       {pageItems?.map((bookData) => {
-        return <div key={bookData?.id}>{bookData.title}</div>;
+        return <BookCard bookData={bookData} key={bookData?.id} />;
       })}
 
       {isPaginationRequired ? (

@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import React from 'react';
 import Button from 'src/components/commonComponents/Button';
 import { PaginationReturn } from 'src/hooks/usePagination';
 import styles from '~/components/commonComponents/Pagination.module.scss';
