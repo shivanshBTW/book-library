@@ -8,11 +8,13 @@ const { root, selectorButtonStyle, selectedButtonStyle } = styles;
 interface PaginationProps<T> extends PaginationReturn<T> {
   hideFirstLastButtons?: boolean;
   hidePreviousNextButtons?: boolean;
+  showAllPages?: boolean;
 }
 
 const PaginationSelector = <T,>({
   hideFirstLastButtons = false,
   hidePreviousNextButtons = false,
+  showAllPages = false,
   totalPages,
   currentPage,
   goToPage,
@@ -26,8 +28,14 @@ const PaginationSelector = <T,>({
   const renderPageButtons = () => {
     const buttons = [];
     const maxButtons = 4;
-    let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
-    const endPage = Math.min(totalPages, startPage + maxButtons - 1);
+    let startPage, endPage;
+    if (showAllPages) {
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+      endPage = Math.min(totalPages, startPage + maxButtons - 1);
+    }
 
     // If on the last page(s), adjust the startPage to still show 4 buttons
     if (endPage - startPage + 1 < maxButtons) {
