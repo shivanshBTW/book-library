@@ -1,23 +1,18 @@
 import clsx from 'clsx';
 import React from 'react';
 import Button from 'src/components/commonComponents/Button';
+import { PaginationReturn } from 'src/hooks/usePagination';
 import styles from '~/components/commonComponents/Pagination.module.scss';
 const { root, selectorButtonStyle, selectedButtonStyle } = styles;
 
-interface PaginationProps {
-  totalPages: number;
-  currentPage: number;
-  goToPage: (page: number) => void;
-  goToNextPage: () => void;
-  goToPreviousPage: () => void;
-  goToFirstPage: () => void;
-  goToLastPage: () => void;
-  isPaginationRequired: boolean;
-  isFirstPage: boolean;
-  isLastPage: boolean;
+interface PaginationProps<T> extends PaginationReturn<T> {
+  hideFirstLastButtons?: boolean;
+  hidePreviousNextButtons?: boolean;
 }
 
-const PaginationSelector: React.FC<PaginationProps> = ({
+const PaginationSelector = <T,>({
+  hideFirstLastButtons = false,
+  hidePreviousNextButtons = false,
   totalPages,
   currentPage,
   goToPage,
@@ -27,7 +22,7 @@ const PaginationSelector: React.FC<PaginationProps> = ({
   goToLastPage,
   isFirstPage,
   isLastPage,
-}) => {
+}: PaginationProps<T>) => {
   const renderPageButtons = () => {
     const buttons = [];
     const maxButtons = 4;
@@ -59,35 +54,43 @@ const PaginationSelector: React.FC<PaginationProps> = ({
 
   return (
     <div className={root}>
-      <Button
-        onClick={goToFirstPage}
-        disabled={isFirstPage}
-        className={selectorButtonStyle}
-      >
-        {'<<'}
-      </Button>
-      <Button
-        onClick={goToPreviousPage}
-        disabled={isFirstPage}
-        className={selectorButtonStyle}
-      >
-        {'<'}
-      </Button>
+      {!hideFirstLastButtons && (
+        <Button
+          onClick={goToFirstPage}
+          disabled={isFirstPage}
+          className={selectorButtonStyle}
+        >
+          {'<<'}
+        </Button>
+      )}
+      {!hidePreviousNextButtons && (
+        <Button
+          onClick={goToPreviousPage}
+          disabled={isFirstPage}
+          className={selectorButtonStyle}
+        >
+          {'<'}
+        </Button>
+      )}
       {renderPageButtons()}
-      <Button
-        onClick={goToNextPage}
-        disabled={isLastPage}
-        className={selectorButtonStyle}
-      >
-        {'>'}
-      </Button>
-      <Button
-        onClick={goToLastPage}
-        disabled={isLastPage}
-        className={selectorButtonStyle}
-      >
-        {'>>'}
-      </Button>
+      {!hidePreviousNextButtons && (
+        <Button
+          onClick={goToNextPage}
+          disabled={isLastPage}
+          className={selectorButtonStyle}
+        >
+          {'>'}
+        </Button>
+      )}
+      {!hideFirstLastButtons && (
+        <Button
+          onClick={goToLastPage}
+          disabled={isLastPage}
+          className={selectorButtonStyle}
+        >
+          {'>>'}
+        </Button>
+      )}
     </div>
   );
 };

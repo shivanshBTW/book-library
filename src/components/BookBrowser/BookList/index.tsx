@@ -54,7 +54,10 @@ function BookList() {
       })}
 
       {isPaginationRequired ? (
-        <PaginationSelector {...paginationState} />
+        <PaginationSelector<BookData>
+          hideFirstLastButtons
+          {...paginationState}
+        />
       ) : null}
     </div>
   );

@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface PaginationProps<T> {
   itemList: T[];
   itemsPerPage?: number;
 }
 
-interface PaginationReturn<T> {
+export interface PaginationReturn<T> {
   pageItems: T[];
   totalPages: number;
   currentPage: number;
