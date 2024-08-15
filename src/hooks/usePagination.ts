@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 interface PaginationProps<T> {
   itemList: T[];
   itemsPerPage?: number;
+  showAllPages?: boolean;
 }
 
 export interface PaginationReturn<T> {
@@ -17,11 +18,13 @@ export interface PaginationReturn<T> {
   isPaginationRequired: boolean;
   isFirstPage: boolean;
   isLastPage: boolean;
+  pageButtonList: number[];
 }
 
 function usePagination<T>({
   itemList,
   itemsPerPage = 10,
+  showAllPages,
 }: PaginationProps<T>): PaginationReturn<T> {
   const [currentPage, goToPage] = useState(1);
 
@@ -59,6 +62,29 @@ function usePagination<T>({
     );
   }
 
+  const pageButtonList = useMemo(() => {
+    const maxButtons = 4;
+    let startPage, endPage;
+    if (showAllPages) {
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+      endPage = Math.min(totalPages, startPage + maxButtons - 1);
+    }
+
+    // handling the last page
+    if (endPage - startPage + 1 < maxButtons) {
+      startPage = Math.max(1, endPage - maxButtons + 1);
+    }
+
+    const buttons = [];
+    for (let page = startPage; page <= endPage; page++) {
+      buttons.push(page);
+    }
+    return buttons;
+  }, [currentPage, showAllPages, totalPages]);
+
   return {
     pageItems,
     totalPages,
@@ -71,6 +97,7 @@ function usePagination<T>({
     isPaginationRequired,
     isFirstPage,
     isLastPage,
+    pageButtonList,
   };
 }
 

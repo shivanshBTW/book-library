@@ -24,12 +24,15 @@ function BookList() {
   } = useQuery<BookData[]>({
     queryKey: ['fetchBookList'],
     queryFn: fetchBooks,
-    // staleTime: 60 * 60 * 1000, // 1 hour
+    staleTime: Infinity, // 1 hour
     // gcTime: 30 * 60 * 1000, // 30 minutes
   });
   console.log('bookList in comp', bookList);
 
-  const paginationState = usePagination({ itemList: bookList, itemsPerPage });
+  const paginationState = usePagination({
+    itemList: bookList,
+    itemsPerPage,
+  });
   const {
     pageItems,
     totalPages,
@@ -42,6 +45,7 @@ function BookList() {
     isPaginationRequired,
     isFirstPage,
     isLastPage,
+    pageButtonList,
   } = paginationState;
 
   if (error)

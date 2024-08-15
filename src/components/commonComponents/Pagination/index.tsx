@@ -7,14 +7,11 @@ const { root, selectorButtonStyle, selectedButtonStyle } = styles;
 interface PaginationProps<T> extends PaginationReturn<T> {
   hideFirstLastButtons?: boolean;
   hidePreviousNextButtons?: boolean;
-  showAllPages?: boolean;
 }
 
 const PaginationSelector = <T,>({
   hideFirstLastButtons = false,
   hidePreviousNextButtons = false,
-  showAllPages = false,
-  totalPages,
   currentPage,
   goToPage,
   goToNextPage,
@@ -23,41 +20,8 @@ const PaginationSelector = <T,>({
   goToLastPage,
   isFirstPage,
   isLastPage,
+  pageButtonList,
 }: PaginationProps<T>) => {
-  const renderPageButtons = () => {
-    const buttons = [];
-    const maxButtons = 4;
-    let startPage, endPage;
-    if (showAllPages) {
-      startPage = 1;
-      endPage = totalPages;
-    } else {
-      startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
-      endPage = Math.min(totalPages, startPage + maxButtons - 1);
-    }
-
-    // If on the last page(s), adjust the startPage to still show 4 buttons
-    if (endPage - startPage + 1 < maxButtons) {
-      startPage = Math.max(1, endPage - maxButtons + 1);
-    }
-
-    for (let page = startPage; page <= endPage; page++) {
-      const isSelectedPage = currentPage === page;
-      buttons.push(
-        <Button
-          key={page}
-          onClick={() => goToPage(page)}
-          className={clsx(selectorButtonStyle, {
-            [selectedButtonStyle]: isSelectedPage,
-          })}
-        >
-          {page}
-        </Button>
-      );
-    }
-    return buttons;
-  };
-
   return (
     <div className={root}>
       {!hideFirstLastButtons && (
@@ -78,7 +42,21 @@ const PaginationSelector = <T,>({
           {'<'}
         </Button>
       )}
-      {renderPageButtons()}
+
+      {pageButtonList.map((page) => {
+        return (
+          <Button
+            key={page}
+            onClick={() => goToPage(page)}
+            className={clsx(selectorButtonStyle, {
+              [selectedButtonStyle]: currentPage === page,
+            })}
+          >
+            {page}
+          </Button>
+        );
+      })}
+
       {!hidePreviousNextButtons && (
         <Button
           onClick={goToNextPage}
