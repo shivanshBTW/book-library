@@ -77,17 +77,10 @@
         }
 
         .likeButtonStyle {
-            &.likeButtonSelected,
+            &.isLikedStyle,
             &:hover {
                 background-color: #ff8488;
                 color: white;
-            }
-
-            &.likeButtonSelected {
-                &:hover {
-                    background-color: base.$paper;
-                    color: base.$mainTextColor;
-                }
             }
 
             .heartOffIconStyle {

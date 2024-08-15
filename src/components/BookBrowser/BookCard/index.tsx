@@ -11,6 +11,7 @@ import {
 import clsx from 'clsx';
 import styles from '~/components/BookBrowser/BookCard.module.scss';
 import { useState } from 'react';
+import useLikeBook from 'src/hooks/useLikeBook';
 
 const {
   root,
@@ -23,7 +24,6 @@ const {
   buttonGroupContainer,
   actionButtonStyle,
   likeButtonStyle,
-  likeButtonSelected,
   heartIconStyle,
   heartOffIconStyle,
   isLikedStyle,
@@ -31,10 +31,18 @@ const {
 
 interface BookCardProps {
   bookData: BookData;
+  likedList: number[];
+  setLikedList: (likedList: number[]) => void;
 }
 
-const BookCard: React.FC<BookCardProps> = ({ bookData }) => {
+const BookCard: React.FC<BookCardProps> = ({
+  bookData,
+  likedList,
+  setLikedList,
+}) => {
+  const [imageError, setImageError] = useState(false);
   const {
+    id,
     title,
     author,
     cover,
@@ -42,14 +50,15 @@ const BookCard: React.FC<BookCardProps> = ({ bookData }) => {
     publicationDate,
     isCustomBook = true,
   } = bookData;
+  const { isBookLiked, handleToggleBookLike } = useLikeBook(
+    id,
+    likedList,
+    setLikedList
+  );
 
-  const [imageError, setImageError] = useState(false);
   const handleImageError = () => setImageError(true);
+
   console.log('bookData', bookData);
-
-  const isLiked = false;
-  //   const isLiked = true;
-
   return (
     <div className={root}>
       <div>
@@ -74,17 +83,18 @@ const BookCard: React.FC<BookCardProps> = ({ bookData }) => {
         <div className={buttonGroupContainer}>
           <div
             className={clsx(actionButtonStyle, likeButtonStyle, {
-              [likeButtonSelected]: isLiked,
+              [isLikedStyle]: isBookLiked,
             })}
+            onClick={handleToggleBookLike}
           >
             <LuHeart
               className={clsx(heartIconStyle, {
-                [isLikedStyle]: isLiked,
+                [isLikedStyle]: isBookLiked,
               })}
             />
             <LuHeartOff
               className={clsx(heartOffIconStyle, {
-                [isLikedStyle]: isLiked,
+                [isLikedStyle]: isBookLiked,
               })}
             />
           </div>

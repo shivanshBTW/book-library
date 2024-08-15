@@ -5,11 +5,17 @@ import { fetchBooks } from 'src/service/fetchBooks';
 import styles from '~/components/BookBrowser/BookList.module.scss';
 import usePagination from 'src/hooks/usePagination';
 import { useQuery } from '@tanstack/react-query';
+import useLocalStorage from 'src/hooks/useLocalStorage';
 
 const { root, cardListContainer, errorContainer } = styles;
 
 function BookList() {
   const itemsPerPage = 5;
+  const [likedList, setLikedList] = useLocalStorage<Array<number>>(
+    'likedList',
+    []
+  );
+
   const {
     data: bookList = [],
     isPending,
@@ -52,7 +58,14 @@ function BookList() {
     <div className={root}>
       <div className={cardListContainer}>
         {pageItems?.map((bookData) => {
-          return <BookCard bookData={bookData} key={bookData?.id} />;
+          return (
+            <BookCard
+              bookData={bookData}
+              key={bookData?.id}
+              likedList={likedList}
+              setLikedList={setLikedList}
+            />
+          );
         })}
       </div>
 
