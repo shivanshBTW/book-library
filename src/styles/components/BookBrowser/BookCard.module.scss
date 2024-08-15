@@ -10,93 +10,97 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
 
-.coverImageContainer {
-    margin: 0.75rem;
-    margin-bottom: 0.25rem;
-    min-width: 10rem;
-    max-width: 100%;
-    height: 15rem;
-    background-color: base.$paper1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.5rem;
-    overflow: hidden;
-}
-
-.coverImage {
-    height: 100%;
-    object-fit: contain;
-}
-
-.bookTitleStyle {
-    @include base.subtitle2;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    font-weight: base.$fontWeightBold;
-}
-
-.authorNameContainerStyle {
-    @include base.caption;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    font-weight: base.$fontWeightRegular;
-    width: 100%;
-}
-.authorNameStyle {
-    text-align: center;
-    font-weight: base.$fontWeightBold;
-}
-
-.buttonGroupContainer {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid base.$borderColorLight;
-    overflow: hidden;
-}
-
-.actionButtonStyle {
-    display: inline-block;
-    padding: 0.5rem;
-    flex-grow: 1;
-    text-align: center;
-    cursor: pointer;
-    border-right: 1px solid base.$borderColorLight;
-    transition: background-color 0.2s ease;
-
-    &:last-of-type {
-        border-right: none;
-    }
-    &:hover {
+    .coverImageContainer {
+        margin: 0.75rem;
+        margin-bottom: 0.25rem;
+        min-width: 10rem;
+        max-width: 100%;
+        height: 15rem;
         background-color: base.$paper1;
-    }
-}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        .coverImage {
+            height: 100%;
+            object-fit: contain;
+        }
 
-.likeButtonStyle {
-    &.likeButtonSelected,
-    &:hover {
-        background-color: #ff8488;
-        color: white;
-    }
-
-    &.likeButtonSelected {
-        &:hover {
-            background-color: base.$paper;
-            color: base.$mainTextColor;
+        .errorImage {
+            font-size: 5rem;
         }
     }
 
-    .heartOffIconStyle {
-        display: none;
+    .bookTitleStyle {
+        @include base.subtitle2;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        font-weight: base.$fontWeightBold;
     }
-    &:hover {
-        .heartIconStyle.isLikedStyle {
-            display: none;
+
+    .authorNameContainerStyle {
+        @include base.caption;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        font-weight: base.$fontWeightRegular;
+        width: 100%;
+
+        .authorNameStyle {
+            text-align: center;
+            font-weight: base.$fontWeightBold;
         }
-        .heartOffIconStyle.isLikedStyle {
+    }
+
+    .buttonGroupContainer {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid base.$borderColorLight;
+        overflow: hidden;
+
+        .actionButtonStyle {
             display: inline-block;
+            padding: 0.5rem;
+            flex-grow: 1;
+            text-align: center;
+            cursor: pointer;
+            border-right: 1px solid base.$borderColorLight;
+            transition: background-color 0.2s ease;
+
+            &:last-of-type {
+                border-right: none;
+            }
+            &:hover {
+                background-color: base.$paper1;
+            }
+        }
+
+        .likeButtonStyle {
+            &.likeButtonSelected,
+            &:hover {
+                background-color: #ff8488;
+                color: white;
+            }
+
+            &.likeButtonSelected {
+                &:hover {
+                    background-color: base.$paper;
+                    color: base.$mainTextColor;
+                }
+            }
+
+            .heartOffIconStyle {
+                display: none;
+            }
+            &:hover {
+                .heartIconStyle.isLikedStyle {
+                    display: none;
+                }
+                .heartOffIconStyle.isLikedStyle {
+                    display: inline-block;
+                }
+            }
         }
     }
 }

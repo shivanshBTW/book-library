@@ -16,6 +16,7 @@ const {
   root,
   coverImageContainer,
   coverImage,
+  errorImage,
   bookTitleStyle,
   authorNameContainerStyle,
   authorNameStyle,
@@ -46,15 +47,15 @@ const BookCard: React.FC<BookCardProps> = ({ bookData }) => {
   const handleImageError = () => setImageError(true);
   console.log('bookData', bookData);
 
-  //   const isLiked = false;
-  const isLiked = true;
+  const isLiked = false;
+  //   const isLiked = true;
 
   return (
     <div className={root}>
       <div>
         <div className={coverImageContainer}>
           {imageError ? (
-            <LuImageOff />
+            <LuImageOff className={errorImage} />
           ) : (
             <img
               src={cover}
