@@ -52,15 +52,16 @@ function usePagination<T>({
     goToPage(totalPages);
   };
 
-  let pageItems: T[];
-  if (!isPaginationRequired) {
-    pageItems = itemList;
-  } else {
-    pageItems = itemList.slice(
-      startElementIndex,
-      startElementIndex + itemsPerPage
-    );
-  }
+  const pageItems: T[] = useMemo(() => {
+    if (!isPaginationRequired) {
+      return itemList;
+    } else {
+      return itemList.slice(
+        startElementIndex,
+        startElementIndex + itemsPerPage
+      );
+    }
+  }, [itemList, startElementIndex, itemsPerPage, isPaginationRequired]);
 
   const pageButtonList = useMemo(() => {
     const maxButtons = 4;
