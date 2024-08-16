@@ -6,10 +6,15 @@ import styles from '~/components/BookBrowser/BookList.module.scss';
 import usePagination from 'src/hooks/usePagination';
 import { useQuery } from '@tanstack/react-query';
 import useLocalStorage from 'src/hooks/useLocalStorage';
+import { bookModalStateType } from 'src/pages/Home';
 
 const { root, cardListContainer, errorContainer } = styles;
 
-function BookList() {
+interface BookListProps {
+  handleBookModalOpen: (state: bookModalStateType) => void;
+}
+
+function BookList({ handleBookModalOpen }: BookListProps) {
   const itemsPerPage = 5;
   const [likedList, setLikedList] = useLocalStorage<Array<number>>(
     'likedList',

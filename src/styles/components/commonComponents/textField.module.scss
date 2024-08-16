@@ -4,8 +4,8 @@
 }
 
 .labelStyle {
-    @include h6;
-    @include fontWeightRegular;
+    @include base.h6;
+    font-size: base.$fontWeightRegular;
     margin-bottom: 1.25rem;
 }
 
@@ -15,14 +15,14 @@
 
 .inputStyle {
     padding: 2rem 3rem;
-    background: $paper;
+    background: base.$paper;
     border: 1px solid base.$borderColor;
     border-radius: 0.5rem;
     outline: none;
-    @include h6;
-    color: $mainTextColor;
+    @include base.h6;
+    color: base.$mainTextColor;
     &::placeholder {
-        color: $tertiaryTextColor;
+        color: base.$tertiaryTextColor;
     }
     &.fullWidthStyle {
         width: 100%;

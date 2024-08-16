@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import router from 'src/routes';
 import store from 'src/redux/store';
+import 'react-responsive-modal/styles.css';
 
 const queryClient = new QueryClient();
 

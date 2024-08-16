@@ -1,14 +1,20 @@
 import Button from 'src/components/commonComponents/Button';
-import useModal from 'src/hooks/useModal';
+import { bookModalStateType } from 'src/pages/Home';
 import styles from '~/components/commonComponents/topBar.module.scss';
 const { root } = styles;
 
-function TopBar() {
-  const {} = useModal();
+interface TopBarProps {
+  handleBookModalOpen: (state: bookModalStateType) => void;
+}
+function TopBar({ handleBookModalOpen }: TopBarProps) {
+  const handleAddBookOpen = () => {
+    handleBookModalOpen({ type: 'add' });
+  };
+
   return (
     <div className={root}>
       <div>Brands Are Live Books</div>
-      <Button>Add Books</Button>
+      <Button onClick={handleAddBookOpen}>Add Books</Button>
     </div>
   );
 }
