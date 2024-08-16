@@ -1,30 +1,26 @@
-import clsx from 'clsx';
 import Modal from 'react-responsive-modal';
 import { bookModalStateType } from 'src/pages/Home';
 import styles from 'src/styles/components/commonComponents/BookManageModal.module.scss';
 import TextField from 'src/components/commonComponents/TextField';
 import useManageBook from 'src/hooks/useManageBook';
 import { useForm } from 'react-hook-form';
-const { root, contentContainer } = styles;
+import Button from 'src/components/commonComponents/Button';
+
+const {
+  root,
+  closeButtonStyle,
+  contentContainer,
+  headerContainer,
+  formContainer,
+  formElementStyle,
+  addBookButton,
+} = styles;
 
 interface BookManageModalProps {
   open: boolean;
   onClose: () => void;
   bookModalState: bookModalStateType;
 }
-
-type Inputs = {
-  example: string;
-  exampleRequired: string;
-};
-
-// id: number;
-// title: string;
-// author: string;
-// description: string;
-// cover: string;
-// publicationDate: string;
-// isCustomBook?: boolean;
 
 function BookManageModal(props: BookManageModalProps) {
   const { open, onClose, bookModalState } = props;
@@ -34,28 +30,61 @@ function BookManageModal(props: BookManageModalProps) {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<BookData>();
 
   return (
     <div className={root}>
-      <Modal open={open} onClose={onClose} center>
-        <div className={contentContainer}>
-          <div></div>
-          <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextField {...register('title', { required: true })} />
-              {/* register your input into the hook by invoking the "register" function */}
-              <input defaultValue="test" {...register('example')} />
+      <Modal
+        open={open}
+        onClose={onClose}
+        center
+        classNames={{
+          modal: contentContainer,
+          closeButton: closeButtonStyle,
+          closeIcon: closeButtonStyle,
+        }}
+      >
+        <div className={headerContainer}>Add Book</div>
+        <div className={formContainer}>
+          <form onSubmit={handleSubmit(onSubmit)} className={formElementStyle}>
+            <TextField
+              fullWidth
+              label={'Title'}
+              errorMessage={errors.title ? 'This field is required' : ''}
+              {...register('title', { required: true })}
+            />
+            <TextField
+              fullWidth
+              label={'Author'}
+              errorMessage={errors.author ? 'This field is required' : ''}
+              {...register('author', { required: true })}
+            />
+            <TextField
+              fullWidth
+              label={'Description'}
+              errorMessage={errors.description ? 'This field is required' : ''}
+              {...register('description', { required: true })}
+            />
+            <TextField
+              fullWidth
+              label={'Cover'}
+              errorMessage={errors.cover ? 'This field is required' : ''}
+              {...register('cover', { required: true })}
+            />
+            <TextField
+              fullWidth
+              type="date"
+              label={'Publication Date'}
+              errorMessage={
+                errors.publicationDate ? 'This field is required' : ''
+              }
+              {...register('publicationDate', { required: true })}
+            />
 
-              {/* include validation with required or other standard HTML validation rules */}
-              <input {...register('exampleRequired', { required: true })} />
-              {/* errors will return when field validation fails  */}
-              {errors.exampleRequired && <span>This field is required</span>}
-
-              <input type="submit" />
-            </form>
-          </div>
-          <div></div>
+            <Button type="submit" className={addBookButton}>
+              Add Book
+            </Button>
+          </form>
         </div>
       </Modal>
     </div>

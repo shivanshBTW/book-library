@@ -2,7 +2,7 @@ import { bookModalStateType } from 'src/pages/Home';
 import { SubmitHandler } from 'react-hook-form';
 
 interface useLikeBookReturn {
-  onSubmit: () => void;
+  onSubmit: (bookData: BookData) => void;
 }
 
 const useManageBook = ({
@@ -17,12 +17,13 @@ const useManageBook = ({
     console.log('add book', bookData);
   };
 
-  const onSubmit = () => {
-    if (editingBook) {
-      onEditBook(data);
+  const onSubmit = (bookData: BookData) => {
+    bookData.isCustomBook = true;
+    if (type === 'edit') {
+      onEditBook(bookData);
     } else {
-      data.id = new Date().valueOf() * -1;
-      onAddBook(data);
+      bookData.id = new Date().valueOf();
+      onAddBook(bookData);
     }
   };
   return { onSubmit };

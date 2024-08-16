@@ -2,3 +2,26 @@
 
 .root {
 }
+
+.closeButtonStyle {
+}
+
+.contentContainer {
+    padding: unset !important;
+    width: 25rem;
+    border-radius: 0.5rem;
+    .headerContainer {
+        padding: 1rem;
+        border-bottom: 1px solid base.$borderColorLight;
+    }
+
+    .formContainer {
+        padding: 1rem 1.5rem;
+        padding-bottom: 2rem;
+        .formElementStyle {
+            display: flex;
+            flex-direction: column;
+            row-gap: 1rem;
+        }
+    }
+}

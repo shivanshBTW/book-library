@@ -1,16 +1,13 @@
 import clsx from 'clsx';
+import { forwardRef } from 'react';
 import styles from '~/components/commonComponents/Button.module.scss';
 const { buttonContainerRoot, buttonStyle, fullWidthStyle } = styles;
 
-interface ButtonProps {
-  className?: string;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
-  children: React.ReactNode | string;
-  disabled?: boolean;
-  onClick?: (event: React.MouseEvent<Element> | undefined) => void;
 }
 
-function Button(props: ButtonProps) {
+const Button = forwardRef(function Button(props: ButtonProps) {
   const { className, fullWidth, children, disabled, ...rest } = props;
   return (
     <div className={buttonContainerRoot}>
@@ -25,6 +22,6 @@ function Button(props: ButtonProps) {
       </button>
     </div>
   );
-}
+});
 
 export default Button;

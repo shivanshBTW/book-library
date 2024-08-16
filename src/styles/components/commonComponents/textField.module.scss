@@ -1,43 +1,37 @@
 @use "~/base";
 
 .textFieldRoot {
-}
-
-.labelStyle {
-    @include base.h6;
-    font-size: base.$fontWeightRegular;
-    margin-bottom: 1.25rem;
-}
-
-.inputComponentContainer {
-    position: relative;
-}
-
-.inputStyle {
-    padding: 2rem 3rem;
-    background: base.$paper;
-    border: 1px solid base.$borderColor;
-    border-radius: 0.5rem;
-    outline: none;
-    @include base.h6;
-    color: base.$mainTextColor;
-    &::placeholder {
-        color: base.$tertiaryTextColor;
+    .labelStyle {
+        @include base.body2;
+        font-weight: base.$fontWeightRegular;
+        margin-bottom: 0.2rem;
     }
-    &.fullWidthStyle {
-        width: 100%;
-        box-sizing: border-box;
-    }
-}
 
-.viewPasswordToggleStyle {
-    position: absolute;
-    right: 3rem;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    width: 3rem;
-    @media (max-width: 768px) {
-        right: 1.5rem;
+    .inputComponentContainer {
+        position: relative;
+    }
+
+    .inputStyle {
+        padding: 0.5rem 1rem;
+        background: base.$paper;
+        border: 1px solid base.$borderColor;
+        border-radius: 0.25rem;
+        outline: none;
+        @include base.body1;
+        color: base.$mainTextColor;
+        &::placeholder {
+            color: base.$tertiaryTextColor;
+        }
+        &.fullWidthStyle {
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    .errorMessageStyle {
+        color: base.$errorColor;
+        @include base.caption;
+        font-weight: base.$fontWeightRegular;
+        padding-top: 0.3rem;
     }
 }
