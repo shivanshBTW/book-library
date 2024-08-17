@@ -16,5 +16,7 @@
     .headerIcon {
         padding: 0.5rem 1rem;
         cursor: pointer;
+        text-decoration: none;
+        color: base.$mainTextColor;
     }
 }

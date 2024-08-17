@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from 'src/components/commonComponents/Button';
 import { bookModalStateType } from 'src/pages/Home';
 import styles from '~/components/commonComponents/topBar.module.scss';
@@ -16,7 +17,9 @@ function TopBar({ handleBookModalOpen }: TopBarProps) {
 
   return (
     <div className={root}>
-      <div className={headerIcon}>Brands Are Live Books</div>
+      <Link to="/" replace className={headerIcon}>
+        Brands Are Live Books
+      </Link>
       {handleBookModalOpen ? (
         <Button onClick={handleAddBookOpen}>Add Books</Button>
       ) : null}
