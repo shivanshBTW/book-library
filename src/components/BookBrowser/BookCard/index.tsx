@@ -1,21 +1,15 @@
 // I used this library as this supports ES6 imports and tree shaking,
 // will take 1.7k if we use the whole library, which we won't be using
-import {
-  LuHeart,
-  LuHeartOff,
-  LuImageOff,
-  LuPenLine,
-  LuTrash2,
-} from 'react-icons/lu';
+import { LuHeart, LuHeartOff, LuPenLine, LuTrash2 } from 'react-icons/lu';
 
 import clsx from 'clsx';
 import styles from '~/components/BookBrowser/BookCard.module.scss';
-import { useState } from 'react';
 import useLikeBook from 'src/hooks/useLikeBook';
 import { bookModalStateType } from 'src/pages/Home';
 import { useDispatch } from 'react-redux';
 import { deleteBook } from 'src/redux/actions/books';
 import { toast } from 'material-react-toastify';
+import Image from 'src/components/commonComponents/Image';
 
 const {
   root,
@@ -23,7 +17,6 @@ const {
   topSectionContainer,
   coverImageContainer,
   coverImage,
-  errorImage,
   bookTitleStyle,
   authorNameContainerStyle,
   authorNameStyle,
@@ -50,7 +43,6 @@ const BookCard: React.FC<BookCardProps> = ({
   handleBookModalOpen,
 }) => {
   const dispatch = useDispatch();
-  const [imageError, setImageError] = useState(false);
   const {
     id,
     title,
@@ -65,8 +57,6 @@ const BookCard: React.FC<BookCardProps> = ({
     likedList,
     setLikedList
   );
-
-  const handleImageError = () => setImageError(true);
 
   const handleEditButtonClicked = () => {
     handleBookModalOpen({ type: 'edit', bookId: id });
@@ -84,16 +74,7 @@ const BookCard: React.FC<BookCardProps> = ({
         <div className={topSectionContainer}>
           <div>
             <div className={coverImageContainer}>
-              {imageError ? (
-                <LuImageOff className={errorImage} />
-              ) : (
-                <img
-                  src={cover}
-                  alt={'cover'}
-                  className={coverImage}
-                  onError={handleImageError}
-                />
-              )}
+              <Image src={cover} alt={'cover'} className={coverImage} />
             </div>
             <div className={bookTitleStyle}>{title}</div>
           </div>

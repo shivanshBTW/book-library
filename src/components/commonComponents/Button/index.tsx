@@ -7,11 +7,15 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
 }
 
-const Button = forwardRef(function Button(props: ButtonProps) {
+const Button = forwardRef(function Button(
+  props: ButtonProps,
+  ref: React.Ref<HTMLButtonElement>
+) {
   const { className, fullWidth, children, disabled, ...rest } = props;
   return (
     <div className={buttonContainerRoot}>
       <button
+        ref={ref}
         className={clsx(buttonStyle, className, {
           [fullWidthStyle]: fullWidth,
         })}
