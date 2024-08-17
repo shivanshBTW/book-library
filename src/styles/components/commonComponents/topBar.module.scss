@@ -12,4 +12,9 @@
     border-width: 0;
     border-bottom-width: thin;
     backdrop-filter: blur(8px);
+
+    .headerIcon {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+    }
 }
