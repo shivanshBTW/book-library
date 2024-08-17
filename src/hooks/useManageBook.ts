@@ -1,20 +1,22 @@
 import { bookModalStateType } from 'src/pages/Home';
-import { SubmitHandler } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { addBook, editBook } from 'src/redux/actions/books';
 
 interface useLikeBookReturn {
   onSubmit: (bookData: BookData) => void;
 }
 
-const useManageBook = ({
-  type,
-  bookId,
-}: bookModalStateType): useLikeBookReturn => {
+const useManageBook = (
+  { type }: bookModalStateType,
+  onClose: () => void
+): useLikeBookReturn => {
+  const dispatch = useDispatch();
   const onEditBook = (bookData: BookData) => {
-    console.log('edit book', bookData);
+    dispatch(editBook(bookData));
   };
 
   const onAddBook = (bookData: BookData) => {
-    console.log('add book', bookData);
+    dispatch(addBook(bookData));
   };
 
   const onSubmit = (bookData: BookData) => {
@@ -25,6 +27,7 @@ const useManageBook = ({
       bookData.id = new Date().valueOf();
       onAddBook(bookData);
     }
+    onClose();
   };
   return { onSubmit };
 };

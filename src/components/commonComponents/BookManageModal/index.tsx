@@ -29,7 +29,7 @@ function BookManageModal(props: BookManageModalProps) {
   const { open, onClose, bookModalState } = props;
   const { type, bookId } = bookModalState;
   const isEditSelected = type === 'edit';
-  const { onSubmit } = useManageBook(bookModalState);
+  const { onSubmit } = useManageBook(bookModalState, onClose);
   const {
     register,
     handleSubmit,
