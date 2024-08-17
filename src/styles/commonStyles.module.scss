@@ -1,0 +1,15 @@
+.loaderAnimation {
+    background-color: #ddd;
+    background-size: 200% 100%;
+    animation: goBackForth 1.5s infinite;
+    background: linear-gradient(to right, #ddd 0%, #eee 20%, #ddd 40%, #ddd 100%);
+}
+
+@keyframes goBackForth {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

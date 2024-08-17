@@ -23,6 +23,7 @@
         align-items: center;
         border-radius: 0.5rem;
         overflow: hidden;
+        box-sizing: border-box;
         .coverImage {
             height: 100%;
             object-fit: contain;
@@ -38,6 +39,12 @@
         margin-bottom: 0.5rem;
         text-align: center;
         font-weight: base.$fontWeightBold;
+        &.loaderStyle {
+            padding: 0 0.75rem;
+            box-sizing: border-box;
+            width: 85%;
+            margin-top: 0.5rem;
+        }
     }
 
     .authorNameContainerStyle {
@@ -50,6 +57,11 @@
         .authorNameStyle {
             text-align: center;
             font-weight: base.$fontWeightBold;
+        }
+        &.loaderStyle {
+            padding: 0 0.75rem;
+            box-sizing: border-box;
+            width: 70%;
         }
     }
 

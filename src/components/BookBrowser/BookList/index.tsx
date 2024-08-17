@@ -9,12 +9,13 @@ import useLocalStorage from 'src/hooks/useLocalStorage';
 import { bookModalStateType } from 'src/pages/Home';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
+import BookCardLoader from '../BookCard/loader';
 
 const { root, cardListContainer, errorContainer } = styles;
 
-interface BookListProps {
+type BookListProps = {
   handleBookModalOpen: (state: bookModalStateType) => void;
-}
+};
 
 function BookList({ handleBookModalOpen }: BookListProps) {
   const itemsPerPage = 5;
@@ -35,30 +36,17 @@ function BookList({ handleBookModalOpen }: BookListProps) {
   } = useQuery<BookData[]>({
     queryKey: ['fetchBookList'],
     queryFn: fetchBooks,
-    staleTime: Infinity, // 1 hour
-    // gcTime: 30 * 60 * 1000, // 30 minutes
+    retry: 2,
+    retryOnMount: true,
+    gcTime: 30 * 60 * 1000, // 30 minutes
   });
-  console.log('bookList in comp', bookList);
 
   const paginationState = usePagination({
     itemList: [...customBookList, ...bookList],
     itemsPerPage,
   });
 
-  const {
-    pageItems,
-    totalPages,
-    currentPage,
-    goToPage,
-    goToNextPage,
-    goToPreviousPage,
-    goToFirstPage,
-    goToLastPage,
-    isPaginationRequired,
-    isFirstPage,
-    isLastPage,
-    pageButtonList,
-  } = paginationState;
+  const { pageItems, isPaginationRequired } = paginationState;
 
   if (error)
     return (
@@ -68,22 +56,24 @@ function BookList({ handleBookModalOpen }: BookListProps) {
       </div>
     );
 
-  if (isPending) return <div>Loading...</div>;
-
   return (
     <div className={root}>
       <div className={cardListContainer}>
-        {pageItems?.map((bookData) => {
-          return (
-            <BookCard
-              bookData={bookData}
-              key={bookData?.id}
-              likedList={likedList}
-              setLikedList={setLikedList}
-              handleBookModalOpen={handleBookModalOpen}
-            />
-          );
-        })}
+        {isPending
+          ? Array.from(new Array(5)).map((_, index) => {
+              return <BookCardLoader key={index} />;
+            })
+          : pageItems?.map((bookData) => {
+              return (
+                <BookCard
+                  bookData={bookData}
+                  key={bookData?.id}
+                  likedList={likedList}
+                  setLikedList={setLikedList}
+                  handleBookModalOpen={handleBookModalOpen}
+                />
+              );
+            })}
       </div>
 
       {isPaginationRequired ? (
