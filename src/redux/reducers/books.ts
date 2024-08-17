@@ -30,19 +30,19 @@ const booksReducer = (
     case 'ADD_BOOK':
       return {
         ...state,
-        bookList: [action.payload, ...state.customBookList],
+        customBookList: [action.payload, ...state.customBookList],
       };
     case 'EDIT_BOOK':
       return {
         ...state,
-        bookList: state.customBookList.map((book) =>
+        customBookList: state.customBookList.map((book) =>
           book.id === action.payload.id ? action.payload : book
         ),
       };
     case 'DELETE_BOOK':
       return {
         ...state,
-        bookList: state.customBookList.filter(
+        customBookList: state.customBookList.filter(
           (book) => book.id !== action.payload.id
         ),
       };

@@ -13,6 +13,8 @@ import styles from '~/components/BookBrowser/BookCard.module.scss';
 import { useState } from 'react';
 import useLikeBook from 'src/hooks/useLikeBook';
 import { bookModalStateType } from 'src/pages/Home';
+import { useDispatch } from 'react-redux';
+import { deleteBook } from 'src/redux/actions/books';
 
 const {
   root,
@@ -43,6 +45,7 @@ const BookCard: React.FC<BookCardProps> = ({
   setLikedList,
   handleBookModalOpen,
 }) => {
+  const dispatch = useDispatch();
   const [imageError, setImageError] = useState(false);
   const {
     id,
@@ -63,6 +66,10 @@ const BookCard: React.FC<BookCardProps> = ({
 
   const handleEditButtonClicked = () => {
     handleBookModalOpen({ type: 'edit', bookId: id });
+  };
+
+  const handleDeleteClick = () => {
+    dispatch(deleteBook(bookData));
   };
 
   console.log('bookData', bookData);
@@ -113,7 +120,7 @@ const BookCard: React.FC<BookCardProps> = ({
               >
                 <LuPenLine />
               </div>
-              <div className={actionButtonStyle}>
+              <div className={actionButtonStyle} onClick={handleDeleteClick}>
                 <LuTrash2 />
               </div>
             </>
