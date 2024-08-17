@@ -74,7 +74,6 @@ function usePagination<T>({
       endPage = Math.min(totalPages, startPage + maxButtons - 1);
     }
 
-    // handling the last page
     if (endPage - startPage + 1 < maxButtons) {
       startPage = Math.max(1, endPage - maxButtons + 1);
     }
