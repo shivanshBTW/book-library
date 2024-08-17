@@ -7,6 +7,8 @@ import TopBar from 'src/components/TopBar';
 import { RootState } from 'src/redux/store';
 import { fetchBookDetails } from 'src/service/fetchBooks';
 import styles from '~/pages/BookDetailsPage.module.scss';
+import BookDetailsPageLoader from 'src/pages/BookDetailsPage/loader';
+
 const {
   root,
   bookDataContainerStyle,
@@ -17,6 +19,7 @@ const {
   authorNameText,
   descriptionText,
   dateText,
+  errorContainer,
 } = styles;
 
 function BookDetailsPage() {
@@ -50,6 +53,19 @@ function BookDetailsPage() {
   const date = new Date(publicationDate);
   const month = date.toLocaleString('default', { month: 'long' });
   const year = date.getFullYear();
+
+  if (isPending) {
+    return <BookDetailsPageLoader />;
+  }
+
+  if (error)
+    return (
+      <div className={errorContainer}>
+        {error?.message || 'Error '}{' '}
+        <Button onClick={() => refetch()}>Refresh</Button>
+      </div>
+    );
+
   return (
     <div className={root}>
       <TopBar />

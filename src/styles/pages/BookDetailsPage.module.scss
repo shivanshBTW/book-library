@@ -18,7 +18,6 @@
     .coverImageContainerStyle {
         flex: 0.4;
 
-        margin: 0.75rem;
         margin-bottom: 0.25rem;
         min-width: 10rem;
         max-width: 100%;
@@ -58,6 +57,9 @@
             @include base.h4;
             color: base.$secondaryTextColor;
             margin-bottom: 0.5rem;
+            &.loaderStyle {
+                width: 70%;
+            }
         }
 
         .descriptionText {
@@ -65,12 +67,25 @@
             color: base.$secondaryTextColor;
             margin-bottom: 0.5rem;
             text-align: justify;
+            &.loaderStyle {
+                width: 100%;
+            }
         }
 
         .dateText {
             @include base.body1;
             color: base.$secondaryTextColor;
             margin-bottom: 0.5rem;
+            &.loaderStyle {
+                width: 30%;
+            }
         }
     }
+}
+
+.errorContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 2rem;
 }
