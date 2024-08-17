@@ -30,6 +30,7 @@ const {
   likeButtonStyle,
   heartIconStyle,
   heartOffIconStyle,
+  deleteButtonStyle,
   isLikedStyle,
 } = styles;
 
@@ -122,7 +123,10 @@ const BookCard: React.FC<BookCardProps> = ({
               >
                 <LuPenLine />
               </div>
-              <div className={actionButtonStyle} onClick={handleDeleteClick}>
+              <div
+                className={clsx(actionButtonStyle, deleteButtonStyle)}
+                onClick={handleDeleteClick}
+              >
                 <LuTrash2 />
               </div>
             </>

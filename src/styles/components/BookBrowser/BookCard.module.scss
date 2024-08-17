@@ -107,5 +107,13 @@
                 }
             }
         }
+
+        .deleteButtonStyle {
+            color: base.$errorColor;
+            &:hover {
+                background-color: #ff8488;
+                color: white;
+            }
+        }
     }
 }
