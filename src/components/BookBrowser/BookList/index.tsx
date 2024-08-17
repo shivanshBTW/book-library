@@ -7,6 +7,8 @@ import usePagination from 'src/hooks/usePagination';
 import { useQuery } from '@tanstack/react-query';
 import useLocalStorage from 'src/hooks/useLocalStorage';
 import { bookModalStateType } from 'src/pages/Home';
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/redux/store';
 
 const { root, cardListContainer, errorContainer } = styles;
 
@@ -19,6 +21,10 @@ function BookList({ handleBookModalOpen }: BookListProps) {
   const [likedList, setLikedList] = useLocalStorage<Array<number>>(
     'likedList',
     []
+  );
+
+  const customBookList = useSelector(
+    (state: RootState) => state?.books?.customBookList || []
   );
 
   const {
@@ -35,9 +41,10 @@ function BookList({ handleBookModalOpen }: BookListProps) {
   console.log('bookList in comp', bookList);
 
   const paginationState = usePagination({
-    itemList: bookList,
+    itemList: [...customBookList, ...bookList],
     itemsPerPage,
   });
+
   const {
     pageItems,
     totalPages,
@@ -73,6 +80,7 @@ function BookList({ handleBookModalOpen }: BookListProps) {
               key={bookData?.id}
               likedList={likedList}
               setLikedList={setLikedList}
+              handleBookModalOpen={handleBookModalOpen}
             />
           );
         })}

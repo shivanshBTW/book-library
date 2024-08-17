@@ -5,6 +5,9 @@ import TextField from 'src/components/commonComponents/TextField';
 import useManageBook from 'src/hooks/useManageBook';
 import { useForm } from 'react-hook-form';
 import Button from 'src/components/commonComponents/Button';
+import { useEffect } from 'react';
+import { RootState } from 'src/redux/store';
+import { useSelector } from 'react-redux';
 
 const {
   root,
@@ -24,13 +27,45 @@ interface BookManageModalProps {
 
 function BookManageModal(props: BookManageModalProps) {
   const { open, onClose, bookModalState } = props;
+  const { type, bookId } = bookModalState;
+  const isEditSelected = type === 'edit';
   const { onSubmit } = useManageBook(bookModalState);
   const {
     register,
     handleSubmit,
-    watch,
+    setValue,
+    reset,
     formState: { errors },
   } = useForm<BookData>();
+
+  const customBookList = useSelector(
+    (state: RootState) => state?.books?.customBookList || []
+  );
+
+  const selectedBookToEdit = customBookList.find((book) => book.id === bookId);
+
+  useEffect(() => {
+    if (isEditSelected && selectedBookToEdit) {
+      const fields: (keyof BookData)[] = [
+        'id',
+        'title',
+        'author',
+        'description',
+        'cover',
+        'publicationDate',
+      ];
+      fields.forEach((field) => {
+        console.log('selectedBookToEdit', selectedBookToEdit);
+        if (field === 'publicationDate') {
+          setValue(field, selectedBookToEdit[field]);
+        } else {
+          setValue(field, selectedBookToEdit[field]);
+        }
+      });
+    } else {
+      reset();
+    }
+  }, [selectedBookToEdit, reset, setValue, isEditSelected]);
 
   return (
     <div className={root}>
@@ -44,7 +79,9 @@ function BookManageModal(props: BookManageModalProps) {
           closeIcon: closeButtonStyle,
         }}
       >
-        <div className={headerContainer}>Add Book</div>
+        <div className={headerContainer}>
+          {type === 'edit' ? 'Edit' : 'Add'} Book
+        </div>
         <div className={formContainer}>
           <form onSubmit={handleSubmit(onSubmit)} className={formElementStyle}>
             <TextField
@@ -82,7 +119,7 @@ function BookManageModal(props: BookManageModalProps) {
             />
 
             <Button type="submit" className={addBookButton}>
-              Add Book
+              {type === 'edit' ? 'Edit' : 'Add'} Book
             </Button>
           </form>
         </div>

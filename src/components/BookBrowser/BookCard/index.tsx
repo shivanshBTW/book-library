@@ -12,6 +12,7 @@ import clsx from 'clsx';
 import styles from '~/components/BookBrowser/BookCard.module.scss';
 import { useState } from 'react';
 import useLikeBook from 'src/hooks/useLikeBook';
+import { bookModalStateType } from 'src/pages/Home';
 
 const {
   root,
@@ -29,16 +30,18 @@ const {
   isLikedStyle,
 } = styles;
 
-interface BookCardProps {
+type BookCardProps = {
   bookData: BookData;
   likedList: number[];
   setLikedList: (likedList: number[]) => void;
-}
+  handleBookModalOpen: (state: bookModalStateType) => void;
+};
 
 const BookCard: React.FC<BookCardProps> = ({
   bookData,
   likedList,
   setLikedList,
+  handleBookModalOpen,
 }) => {
   const [imageError, setImageError] = useState(false);
   const {
@@ -48,7 +51,7 @@ const BookCard: React.FC<BookCardProps> = ({
     cover,
     description,
     publicationDate,
-    isCustomBook = true,
+    isCustomBook,
   } = bookData;
   const { isBookLiked, handleToggleBookLike } = useLikeBook(
     id,
@@ -57,6 +60,10 @@ const BookCard: React.FC<BookCardProps> = ({
   );
 
   const handleImageError = () => setImageError(true);
+
+  const handleEditButtonClicked = () => {
+    handleBookModalOpen({ type: 'edit', bookId: id });
+  };
 
   console.log('bookData', bookData);
   return (
@@ -100,7 +107,10 @@ const BookCard: React.FC<BookCardProps> = ({
           </div>
           {isCustomBook ? (
             <>
-              <div className={actionButtonStyle}>
+              <div
+                className={actionButtonStyle}
+                onClick={handleEditButtonClicked}
+              >
                 <LuPenLine />
               </div>
               <div className={actionButtonStyle}>
