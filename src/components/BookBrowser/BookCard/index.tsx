@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { deleteBook } from 'src/redux/actions/books';
 import { toast } from 'material-react-toastify';
 import Image from 'src/components/commonComponents/Image';
+import { Link } from 'react-router-dom';
 
 const {
   root,
@@ -71,7 +72,7 @@ const BookCard: React.FC<BookCardProps> = ({
   return (
     <div className={root}>
       <div className={container}>
-        <div className={topSectionContainer}>
+        <Link to={`/${id}`} className={topSectionContainer}>
           <div>
             <div className={coverImageContainer}>
               <Image src={cover} alt={'cover'} className={coverImage} />
@@ -82,43 +83,42 @@ const BookCard: React.FC<BookCardProps> = ({
           <div className={authorNameContainerStyle}>
             by <span className={authorNameStyle}>{author}</span>
           </div>
-        </div>
-        <div>
-          <div className={buttonGroupContainer}>
-            <div
-              className={clsx(actionButtonStyle, likeButtonStyle, {
+        </Link>
+
+        <div className={buttonGroupContainer}>
+          <div
+            className={clsx(actionButtonStyle, likeButtonStyle, {
+              [isLikedStyle]: isBookLiked,
+            })}
+            onClick={handleToggleBookLike}
+          >
+            <LuHeart
+              className={clsx(heartIconStyle, {
                 [isLikedStyle]: isBookLiked,
               })}
-              onClick={handleToggleBookLike}
-            >
-              <LuHeart
-                className={clsx(heartIconStyle, {
-                  [isLikedStyle]: isBookLiked,
-                })}
-              />
-              <LuHeartOff
-                className={clsx(heartOffIconStyle, {
-                  [isLikedStyle]: isBookLiked,
-                })}
-              />
-            </div>
-            {isCustomBook ? (
-              <>
-                <div
-                  className={actionButtonStyle}
-                  onClick={handleEditButtonClicked}
-                >
-                  <LuPenLine />
-                </div>
-                <div
-                  className={clsx(actionButtonStyle, deleteButtonStyle)}
-                  onClick={handleDeleteClick}
-                >
-                  <LuTrash2 />
-                </div>
-              </>
-            ) : null}
+            />
+            <LuHeartOff
+              className={clsx(heartOffIconStyle, {
+                [isLikedStyle]: isBookLiked,
+              })}
+            />
           </div>
+          {isCustomBook ? (
+            <>
+              <div
+                className={actionButtonStyle}
+                onClick={handleEditButtonClicked}
+              >
+                <LuPenLine />
+              </div>
+              <div
+                className={clsx(actionButtonStyle, deleteButtonStyle)}
+                onClick={handleDeleteClick}
+              >
+                <LuTrash2 />
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
     </div>

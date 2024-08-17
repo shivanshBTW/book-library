@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import Button from 'src/components/commonComponents/Button';
 import Image from 'src/components/commonComponents/Image';
 import TopBar from 'src/components/TopBar';
 import { RootState } from 'src/redux/store';
@@ -20,6 +21,7 @@ const {
 
 function BookDetailsPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const customBookList = useSelector(
     (state: RootState) => state?.books?.customBookList || []
   );
@@ -29,12 +31,16 @@ function BookDetailsPage() {
     error,
     refetch,
   } = useQuery<BookData>({
-    queryKey: ['fetchBookList'],
+    queryKey: ['fetchBookDetails'],
     queryFn: () => fetchBookDetails({ id, customBookList }),
     retry: 2,
     retryOnMount: true,
     gcTime: 30 * 60 * 1000, // 30 minutes
   });
+
+  const handleGoToHomePage = () => {
+    navigate('/');
+  };
 
   const { cover, title, author, description, publicationDate } =
     (bookDetails as BookData) || {};
@@ -60,6 +66,7 @@ function BookDetailsPage() {
           <div className={dateText}>
             {month} {year}
           </div>
+          <Button onClick={handleGoToHomePage}>Go Back</Button>
         </div>
       </div>
     </div>
