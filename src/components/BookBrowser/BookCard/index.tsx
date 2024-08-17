@@ -19,6 +19,7 @@ import { toast } from 'material-react-toastify';
 
 const {
   root,
+  container,
   coverImageContainer,
   coverImage,
   errorImage,
@@ -78,59 +79,61 @@ const BookCard: React.FC<BookCardProps> = ({
   console.log('bookData', bookData);
   return (
     <div className={root}>
-      <div>
-        <div className={coverImageContainer}>
-          {imageError ? (
-            <LuImageOff className={errorImage} />
-          ) : (
-            <img
-              src={cover}
-              alt={'cover'}
-              className={coverImage}
-              onError={handleImageError}
-            />
-          )}
-        </div>
-        <div className={bookTitleStyle}>{title}</div>
-      </div>
-      <div>
-        <div className={authorNameContainerStyle}>
-          by <span className={authorNameStyle}>{author}</span>
-        </div>
-        <div className={buttonGroupContainer}>
-          <div
-            className={clsx(actionButtonStyle, likeButtonStyle, {
-              [isLikedStyle]: isBookLiked,
-            })}
-            onClick={handleToggleBookLike}
-          >
-            <LuHeart
-              className={clsx(heartIconStyle, {
-                [isLikedStyle]: isBookLiked,
-              })}
-            />
-            <LuHeartOff
-              className={clsx(heartOffIconStyle, {
-                [isLikedStyle]: isBookLiked,
-              })}
-            />
+      <div className={container}>
+        <div>
+          <div className={coverImageContainer}>
+            {imageError ? (
+              <LuImageOff className={errorImage} />
+            ) : (
+              <img
+                src={cover}
+                alt={'cover'}
+                className={coverImage}
+                onError={handleImageError}
+              />
+            )}
           </div>
-          {isCustomBook ? (
-            <>
-              <div
-                className={actionButtonStyle}
-                onClick={handleEditButtonClicked}
-              >
-                <LuPenLine />
-              </div>
-              <div
-                className={clsx(actionButtonStyle, deleteButtonStyle)}
-                onClick={handleDeleteClick}
-              >
-                <LuTrash2 />
-              </div>
-            </>
-          ) : null}
+          <div className={bookTitleStyle}>{title}</div>
+        </div>
+        <div>
+          <div className={authorNameContainerStyle}>
+            by <span className={authorNameStyle}>{author}</span>
+          </div>
+          <div className={buttonGroupContainer}>
+            <div
+              className={clsx(actionButtonStyle, likeButtonStyle, {
+                [isLikedStyle]: isBookLiked,
+              })}
+              onClick={handleToggleBookLike}
+            >
+              <LuHeart
+                className={clsx(heartIconStyle, {
+                  [isLikedStyle]: isBookLiked,
+                })}
+              />
+              <LuHeartOff
+                className={clsx(heartOffIconStyle, {
+                  [isLikedStyle]: isBookLiked,
+                })}
+              />
+            </div>
+            {isCustomBook ? (
+              <>
+                <div
+                  className={actionButtonStyle}
+                  onClick={handleEditButtonClicked}
+                >
+                  <LuPenLine />
+                </div>
+                <div
+                  className={clsx(actionButtonStyle, deleteButtonStyle)}
+                  onClick={handleDeleteClick}
+                >
+                  <LuTrash2 />
+                </div>
+              </>
+            ) : null}
+          </div>
         </div>
       </div>
     </div>
