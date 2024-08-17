@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import styles from '~/components/commonComponents/TextField.module.scss';
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 
 const {
   inputComponentContainer,
