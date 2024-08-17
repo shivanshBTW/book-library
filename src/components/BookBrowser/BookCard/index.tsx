@@ -11,6 +11,9 @@ import { deleteBook } from 'src/redux/actions/books';
 import { toast } from 'material-react-toastify';
 import Image from 'src/components/commonComponents/Image';
 import { Link } from 'react-router-dom';
+import Modal from 'react-responsive-modal';
+import { useState } from 'react';
+import Button from 'src/components/commonComponents/Button';
 
 const {
   root,
@@ -28,6 +31,11 @@ const {
   heartOffIconStyle,
   deleteButtonStyle,
   isLikedStyle,
+  deleteModalContentContainer,
+  deleteConfirmationButtonsContainer,
+  deleteConfirmationButton,
+  yesButtonStyle,
+  closeButtonStyle,
 } = styles;
 
 type BookCardProps = {
@@ -44,15 +52,8 @@ const BookCard: React.FC<BookCardProps> = ({
   handleBookModalOpen,
 }) => {
   const dispatch = useDispatch();
-  const {
-    id,
-    title,
-    author,
-    cover,
-    description,
-    publicationDate,
-    isCustomBook,
-  } = bookData;
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const { id, title, author, cover, isCustomBook } = bookData;
   const { isBookLiked, handleToggleBookLike } = useLikeBook(
     id,
     likedList,
@@ -63,10 +64,47 @@ const BookCard: React.FC<BookCardProps> = ({
     handleBookModalOpen({ type: 'edit', bookId: id });
   };
 
-  const handleDeleteClick = () => {
+  const handleDelete = () => {
     dispatch(deleteBook(bookData));
     toast.success('Book deleted successfully');
   };
+
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const onDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const deleteModal = (
+    <Modal
+      open={isDeleteModalOpen}
+      onClose={onDeleteModalClose}
+      center
+      classNames={{
+        modal: deleteModalContentContainer,
+        closeButton: closeButtonStyle,
+        closeIcon: closeButtonStyle,
+      }}
+    >
+      <div>Are you sure you want to delete this book?</div>
+      <div className={deleteConfirmationButtonsContainer}>
+        <Button
+          onClick={handleDelete}
+          className={clsx(deleteConfirmationButton, yesButtonStyle)}
+        >
+          Yes
+        </Button>
+        <Button
+          onClick={onDeleteModalClose}
+          className={deleteConfirmationButton}
+        >
+          No
+        </Button>
+      </div>
+    </Modal>
+  );
 
   console.log('bookData', bookData);
   return (
@@ -119,6 +157,7 @@ const BookCard: React.FC<BookCardProps> = ({
               </div>
             </>
           ) : null}
+          {deleteModal}
         </div>
       </div>
     </div>
