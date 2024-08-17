@@ -1,3 +1,5 @@
+import { toast } from 'material-react-toastify';
+
 type useLikeBookReturn = {
   isBookLiked: boolean;
   handleToggleBookLike: () => void;
@@ -12,8 +14,10 @@ const useLikeBook = (
   const handleToggleBookLike = () => {
     if (isBookLiked) {
       setLikedList(likedList.filter((likedId) => likedId !== id));
+      toast.info('Book removed from liked list');
     } else {
       setLikedList([...likedList, id]);
+      toast.success('Book added to liked list');
     }
   };
 
