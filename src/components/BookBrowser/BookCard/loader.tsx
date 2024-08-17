@@ -5,6 +5,7 @@ import commonStyles from '~/commonStyles.module.scss';
 const { loaderAnimation } = commonStyles;
 const {
   root,
+  container,
   coverImageContainer,
   bookTitleStyle,
   authorNameContainerStyle,
@@ -17,18 +18,20 @@ const {
 const BookCardLoader = () => {
   return (
     <div className={root}>
-      <div>
-        <div className={clsx(loaderAnimation, coverImageContainer)} />
-        <div className={clsx(bookTitleStyle, loaderStyle)}>
-          <div className={clsx(loaderAnimation)}>&nbsp;</div>
+      <div className={container}>
+        <div>
+          <div className={clsx(loaderAnimation, coverImageContainer)} />
+          <div className={clsx(bookTitleStyle, loaderStyle)}>
+            <div className={clsx(loaderAnimation)}>&nbsp;</div>
+          </div>
         </div>
-      </div>
-      <div>
-        <div className={clsx(authorNameContainerStyle, loaderStyle)}>
-          <div className={clsx(loaderAnimation, authorNameStyle)}>&nbsp;</div>
-        </div>
-        <div className={clsx(loaderAnimation, buttonGroupContainer)}>
-          <div className={actionButtonStyle}>&nbsp;</div>
+        <div>
+          <div className={clsx(authorNameContainerStyle, loaderStyle)}>
+            <div className={clsx(loaderAnimation, authorNameStyle)}>&nbsp;</div>
+          </div>
+          <div className={clsx(loaderAnimation, buttonGroupContainer)}>
+            <div className={actionButtonStyle}>&nbsp;</div>
+          </div>
         </div>
       </div>
     </div>
