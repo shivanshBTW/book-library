@@ -55,7 +55,6 @@ function BookManageModal(props: BookManageModalProps) {
         'publicationDate',
       ];
       fields.forEach((field) => {
-        console.log('selectedBookToEdit', selectedBookToEdit);
         if (field === 'publicationDate') {
           setValue(field, selectedBookToEdit[field]);
         } else {

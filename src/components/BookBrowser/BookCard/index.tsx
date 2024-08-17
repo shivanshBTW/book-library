@@ -106,7 +106,6 @@ const BookCard: React.FC<BookCardProps> = ({
     </Modal>
   );
 
-  console.log('bookData', bookData);
   return (
     <div className={root}>
       <div className={container}>

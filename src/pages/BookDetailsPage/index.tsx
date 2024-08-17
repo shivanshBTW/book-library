@@ -48,8 +48,6 @@ function BookDetailsPage() {
   const { cover, title, author, description, publicationDate } =
     (bookDetails as BookData) || {};
 
-  console.log('bookDetails', bookDetails);
-
   const date = new Date(publicationDate);
   const month = date.toLocaleString('default', { month: 'long' });
   const year = date.getFullYear();

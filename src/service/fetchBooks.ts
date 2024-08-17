@@ -6,7 +6,6 @@ export const fetchBooks = async () => {
       'Access-Control-Allow-Origin': '*',
     },
   });
-  console.log('API called');
   return response.json();
 };
 
@@ -29,6 +28,5 @@ export const fetchBookDetails = async ({
       'Access-Control-Allow-Origin': '*',
     },
   });
-  console.log('API called');
   return response.json();
 };
