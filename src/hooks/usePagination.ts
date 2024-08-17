@@ -1,12 +1,12 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-interface PaginationProps<T> {
+type PaginationProps<T> = {
   itemList: T[];
   itemsPerPage?: number;
   showAllPages?: boolean;
-}
+};
 
-export interface PaginationReturn<T> {
+export type PaginationReturn<T> = {
   pageItems: T[];
   totalPages: number;
   currentPage: number;
@@ -19,7 +19,7 @@ export interface PaginationReturn<T> {
   isFirstPage: boolean;
   isLastPage: boolean;
   pageButtonList: number[];
-}
+};
 
 function usePagination<T>({
   itemList,

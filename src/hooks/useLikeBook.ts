@@ -1,7 +1,7 @@
-interface useLikeBookReturn {
+type useLikeBookReturn = {
   isBookLiked: boolean;
   handleToggleBookLike: () => void;
-}
+};
 
 const useLikeBook = (
   id: number,

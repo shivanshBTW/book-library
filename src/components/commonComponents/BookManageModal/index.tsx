@@ -19,11 +19,11 @@ const {
   addBookButton,
 } = styles;
 
-interface BookManageModalProps {
+type BookManageModalProps = {
   open: boolean;
   onClose: () => void;
   bookModalState: bookModalStateType;
-}
+};
 
 function BookManageModal(props: BookManageModalProps) {
   const { open, onClose, bookModalState } = props;

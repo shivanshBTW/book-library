@@ -3,9 +3,10 @@ import { bookModalStateType } from 'src/pages/Home';
 import styles from '~/components/commonComponents/topBar.module.scss';
 const { root } = styles;
 
-interface TopBarProps {
+type TopBarProps = {
   handleBookModalOpen: (state: bookModalStateType) => void;
-}
+};
+
 function TopBar({ handleBookModalOpen }: TopBarProps) {
   const handleAddBookOpen = () => {
     handleBookModalOpen({ type: 'add' });
