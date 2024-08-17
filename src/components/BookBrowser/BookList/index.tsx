@@ -10,6 +10,8 @@ import { bookModalStateType } from 'src/pages/Home';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
 import BookCardLoader from '../BookCard/loader';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
 
 const { root, cardListContainer, errorContainer } = styles;
 
@@ -18,6 +20,9 @@ type BookListProps = {
 };
 
 function BookList({ handleBookModalOpen }: BookListProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const itemsPerPage = 5;
   const [likedList, setLikedList] = useLocalStorage<Array<number>>(
     'likedList',
@@ -41,12 +46,28 @@ function BookList({ handleBookModalOpen }: BookListProps) {
     gcTime: 30 * 60 * 1000, // 30 minutes
   });
 
+  const finalList = useMemo(
+    () => [...customBookList, ...bookList],
+    [customBookList, bookList]
+  );
+
   const paginationState = usePagination({
-    itemList: [...customBookList, ...bookList],
+    itemList: finalList,
     itemsPerPage,
   });
 
-  const { pageItems, isPaginationRequired } = paginationState;
+  const { pageItems, isPaginationRequired, goToPage } = paginationState;
+
+  useEffect(() => {
+    if (location.state?.fromBook) {
+      const bookId = location.state?.fromBook;
+      const index = finalList.findIndex((book) => book.id == bookId);
+      if (index >= 0) {
+        goToPage(Math.floor(index / itemsPerPage + 1));
+      }
+      navigate('/', { replace: true });
+    }
+  }, [finalList, goToPage, location, navigate]);
 
   if (error)
     return (

@@ -34,7 +34,7 @@ function BookDetailsPage() {
     error,
     refetch,
   } = useQuery<BookData>({
-    queryKey: ['fetchBookDetails'],
+    queryKey: [`fetchBookDetails/${id}`],
     queryFn: () => fetchBookDetails({ id, customBookList }),
     retry: 2,
     retryOnMount: true,
@@ -42,7 +42,7 @@ function BookDetailsPage() {
   });
 
   const handleGoToHomePage = () => {
-    navigate('/');
+    navigate('/', { state: { fromBook: id } });
   };
 
   const { cover, title, author, description, publicationDate } =
