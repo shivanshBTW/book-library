@@ -20,6 +20,7 @@ import { toast } from 'material-react-toastify';
 const {
   root,
   container,
+  topSectionContainer,
   coverImageContainer,
   coverImage,
   errorImage,
@@ -80,25 +81,28 @@ const BookCard: React.FC<BookCardProps> = ({
   return (
     <div className={root}>
       <div className={container}>
-        <div>
-          <div className={coverImageContainer}>
-            {imageError ? (
-              <LuImageOff className={errorImage} />
-            ) : (
-              <img
-                src={cover}
-                alt={'cover'}
-                className={coverImage}
-                onError={handleImageError}
-              />
-            )}
+        <div className={topSectionContainer}>
+          <div>
+            <div className={coverImageContainer}>
+              {imageError ? (
+                <LuImageOff className={errorImage} />
+              ) : (
+                <img
+                  src={cover}
+                  alt={'cover'}
+                  className={coverImage}
+                  onError={handleImageError}
+                />
+              )}
+            </div>
+            <div className={bookTitleStyle}>{title}</div>
           </div>
-          <div className={bookTitleStyle}>{title}</div>
-        </div>
-        <div>
+
           <div className={authorNameContainerStyle}>
             by <span className={authorNameStyle}>{author}</span>
           </div>
+        </div>
+        <div>
           <div className={buttonGroupContainer}>
             <div
               className={clsx(actionButtonStyle, likeButtonStyle, {
