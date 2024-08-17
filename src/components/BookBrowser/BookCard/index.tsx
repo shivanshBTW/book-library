@@ -15,6 +15,7 @@ import useLikeBook from 'src/hooks/useLikeBook';
 import { bookModalStateType } from 'src/pages/Home';
 import { useDispatch } from 'react-redux';
 import { deleteBook } from 'src/redux/actions/books';
+import { toast } from 'material-react-toastify';
 
 const {
   root,
@@ -70,6 +71,7 @@ const BookCard: React.FC<BookCardProps> = ({
 
   const handleDeleteClick = () => {
     dispatch(deleteBook(bookData));
+    toast.success('Book deleted successfully');
   };
 
   console.log('bookData', bookData);

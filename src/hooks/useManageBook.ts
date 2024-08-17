@@ -1,6 +1,7 @@
 import { bookModalStateType } from 'src/pages/Home';
 import { useDispatch } from 'react-redux';
 import { addBook, editBook } from 'src/redux/actions/books';
+import { toast } from 'material-react-toastify';
 
 interface useLikeBookReturn {
   onSubmit: (bookData: BookData) => void;
@@ -13,10 +14,12 @@ const useManageBook = (
   const dispatch = useDispatch();
   const onEditBook = (bookData: BookData) => {
     dispatch(editBook(bookData));
+    toast.success('Book edited successfully');
   };
 
   const onAddBook = (bookData: BookData) => {
     dispatch(addBook(bookData));
+    toast.success('Book added successfully');
   };
 
   const onSubmit = (bookData: BookData) => {
