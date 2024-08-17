@@ -2,3 +2,53 @@
 
 .root {
 }
+
+.bookDataContainerStyle {
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: row;
+    column-gap: 3rem;
+    row-gap: 1rem;
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
+
+    .coverImageContainerStyle {
+        flex: 0.4;
+        .coverImageStyle {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .detailsContainer {
+        flex: 0.6;
+        .bookTitleText {
+            @include base.h1;
+            font-weight: base.$fontWeightBold;
+            margin-bottom: 0.5rem;
+        }
+
+        .authorNameText {
+            @include base.h4;
+            color: base.$secondaryTextColor;
+            margin-bottom: 0.5rem;
+        }
+
+        .descriptionText {
+            @include base.h6;
+            color: base.$secondaryTextColor;
+            margin-bottom: 0.5rem;
+            text-align: justify;
+        }
+
+        .dateText {
+            @include base.body1;
+            color: base.$secondaryTextColor;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
