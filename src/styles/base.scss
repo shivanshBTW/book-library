@@ -64,9 +64,6 @@ $fontWeightExtraBold: 800;
     font-weight: 400;
     line-height: 1.2222222222222223;
     letter-spacing: 0.2;
-    @media (max-width: 768px) {
-        font-size: 2rem;
-    }
 }
 
 @mixin h4 {
@@ -74,9 +71,6 @@ $fontWeightExtraBold: 800;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.2;
-    @media (max-width: 768px) {
-        font-size: 2rem;
-    }
 }
 
 @mixin h5 {
@@ -90,9 +84,6 @@ $fontWeightExtraBold: 800;
     font-size: 1.25rem;
     font-weight: 500;
     line-height: 1.5;
-    @media (max-width: 768px) {
-        font-size: 1.5rem;
-    }
 }
 
 @mixin button {
@@ -121,9 +112,6 @@ $fontWeightExtraBold: 800;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
-    @media (max-width: 768px) {
-        font-size: 1.25rem;
-    }
 }
 
 @mixin body2 {
@@ -131,9 +119,6 @@ $fontWeightExtraBold: 800;
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
-    @media (max-width: 768px) {
-        font-size: 7px;
-    }
 }
 
 @mixin caption {
