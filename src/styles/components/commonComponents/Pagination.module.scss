@@ -4,8 +4,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2rem 0 1rem;
+    margin: 1rem 0;
     column-gap: 0.5rem;
+    &.hideRoot {
+        opacity: 0;
+    }
+}
+
+.stickyRoot {
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+    background: base.$background;
+    box-shadow: 0px 0px 5px 0px base.$mainTextColor;
 }
 
 .selectorButtonStyle {
