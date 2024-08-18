@@ -6,7 +6,7 @@ import styles from '~/components/BookBrowser/BookList.module.scss';
 import usePagination from 'src/hooks/usePagination';
 import { useQuery } from '@tanstack/react-query';
 import useLocalStorage from 'src/hooks/useLocalStorage';
-import { bookModalStateType } from 'src/pages/Home';
+import { bookManageModalStateType } from 'src/pages/Home';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
 import BookCardLoader from '../BookCard/loader';
@@ -16,10 +16,10 @@ import { useEffect, useMemo } from 'react';
 const { root, cardListContainer, errorContainer } = styles;
 
 type BookListProps = {
-  handleBookModalOpen: (state: bookModalStateType) => void;
+  handleBookManageModalOpen: (state: bookManageModalStateType) => void;
 };
 
-function BookList({ handleBookModalOpen }: BookListProps) {
+function BookList({ handleBookManageModalOpen }: BookListProps) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -41,8 +41,6 @@ function BookList({ handleBookModalOpen }: BookListProps) {
   } = useQuery<BookData[]>({
     queryKey: ['fetchBookList'],
     queryFn: fetchBooks,
-    retry: 2,
-    retryOnMount: true,
     gcTime: 30 * 60 * 1000, // 30 minutes
   });
 
@@ -91,7 +89,7 @@ function BookList({ handleBookModalOpen }: BookListProps) {
                   key={bookData?.id}
                   likedList={likedList}
                   setLikedList={setLikedList}
-                  handleBookModalOpen={handleBookModalOpen}
+                  handleBookManageModalOpen={handleBookManageModalOpen}
                 />
               );
             })}

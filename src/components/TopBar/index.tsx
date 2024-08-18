@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
 import Button from 'src/components/commonComponents/Button';
-import { bookModalStateType } from 'src/pages/Home';
+import { bookManageModalStateType } from 'src/pages/Home';
 import styles from '~/components/commonComponents/topBar.module.scss';
 const { root, headerIcon } = styles;
 
 type TopBarProps = {
-  handleBookModalOpen?: (state: bookModalStateType) => void;
+  handleBookManageModalOpen?: (state: bookManageModalStateType) => void;
 };
 
-function TopBar({ handleBookModalOpen }: TopBarProps) {
+function TopBar({ handleBookManageModalOpen }: TopBarProps) {
   const handleAddBookOpen = () => {
-    if (handleBookModalOpen) {
-      handleBookModalOpen({ type: 'add' });
+    if (handleBookManageModalOpen) {
+      handleBookManageModalOpen({ type: 'add' });
     }
   };
 
@@ -20,7 +20,7 @@ function TopBar({ handleBookModalOpen }: TopBarProps) {
       <Link to="/" replace className={headerIcon}>
         Brands Are Live Books
       </Link>
-      {handleBookModalOpen ? (
+      {handleBookManageModalOpen ? (
         <Button onClick={handleAddBookOpen}>Add Books</Button>
       ) : null}
     </div>

@@ -2,18 +2,16 @@
 // will take 1.7k if we use the whole library, which we won't be using
 import { LuHeart, LuHeartOff, LuPenLine, LuTrash2 } from 'react-icons/lu';
 
-import clsx from 'clsx';
-import styles from '~/components/BookBrowser/BookCard.module.scss';
-import useLikeBook from 'src/hooks/useLikeBook';
-import { bookModalStateType } from 'src/pages/Home';
-import { useDispatch } from 'react-redux';
-import { deleteBook } from 'src/redux/actions/books';
-import { toast } from 'material-react-toastify';
+import Button from 'src/components/commonComponents/Button';
 import Image from 'src/components/commonComponents/Image';
 import { Link } from 'react-router-dom';
 import Modal from 'react-responsive-modal';
+import { bookManageModalStateType } from 'src/pages/Home';
+import clsx from 'clsx';
+import styles from '~/components/BookBrowser/BookCard.module.scss';
+import useEditDeleteBook from 'src/hooks/useEditDeleteBook';
+import useLikeBook from 'src/hooks/useLikeBook';
 import { useState } from 'react';
-import Button from 'src/components/commonComponents/Button';
 
 const {
   root,
@@ -42,16 +40,15 @@ type BookCardProps = {
   bookData: BookData;
   likedList: number[];
   setLikedList: (likedList: number[]) => void;
-  handleBookModalOpen: (state: bookModalStateType) => void;
+  handleBookManageModalOpen: (state: bookManageModalStateType) => void;
 };
 
 const BookCard: React.FC<BookCardProps> = ({
   bookData,
   likedList,
   setLikedList,
-  handleBookModalOpen,
+  handleBookManageModalOpen,
 }) => {
-  const dispatch = useDispatch();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const { id, title, author, cover, isCustomBook } = bookData;
   const { isBookLiked, handleToggleBookLike } = useLikeBook(
@@ -59,15 +56,10 @@ const BookCard: React.FC<BookCardProps> = ({
     likedList,
     setLikedList
   );
-
-  const handleEditButtonClicked = () => {
-    handleBookModalOpen({ type: 'edit', bookId: id });
-  };
-
-  const handleDelete = () => {
-    dispatch(deleteBook(bookData));
-    toast.success('Book deleted successfully');
-  };
+  const { handleEditButtonClicked, handleDelete } = useEditDeleteBook(
+    bookData,
+    handleBookManageModalOpen
+  );
 
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);

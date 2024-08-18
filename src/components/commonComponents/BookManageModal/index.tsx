@@ -1,5 +1,5 @@
 import Modal from 'react-responsive-modal';
-import { bookModalStateType } from 'src/pages/Home';
+import { bookManageModalStateType } from 'src/pages/Home';
 import styles from 'src/styles/components/commonComponents/BookManageModal.module.scss';
 import TextField from 'src/components/commonComponents/TextField';
 import useManageBook from 'src/hooks/useManageBook';
@@ -22,14 +22,14 @@ const {
 type BookManageModalProps = {
   open: boolean;
   onClose: () => void;
-  bookModalState: bookModalStateType;
+  bookManageModalState: bookManageModalStateType;
 };
 
 function BookManageModal(props: BookManageModalProps) {
-  const { open, onClose, bookModalState } = props;
-  const { type, bookId } = bookModalState;
+  const { open, onClose, bookManageModalState } = props;
+  const { type, bookId } = bookManageModalState;
   const isEditSelected = type === 'edit';
-  const { onSubmit } = useManageBook(bookModalState, onClose);
+  const { onSubmit } = useManageBook(bookManageModalState, onClose);
   const {
     register,
     handleSubmit,

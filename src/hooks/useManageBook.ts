@@ -1,4 +1,4 @@
-import { bookModalStateType } from 'src/pages/Home';
+import { bookManageModalStateType } from 'src/pages/Home';
 import { useDispatch } from 'react-redux';
 import { addBook, editBook } from 'src/redux/actions/books';
 import { toast } from 'material-react-toastify';
@@ -8,7 +8,7 @@ type useLikeBookReturn = {
 };
 
 const useManageBook = (
-  { type }: bookModalStateType,
+  { type }: bookManageModalStateType,
   onClose: () => void
 ): useLikeBookReturn => {
   const dispatch = useDispatch();

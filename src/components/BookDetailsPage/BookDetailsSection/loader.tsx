@@ -1,8 +1,7 @@
 import clsx from 'clsx';
 import Button from 'src/components/commonComponents/Button';
-import TopBar from 'src/components/TopBar';
 
-import styles from '~/pages/BookDetailsPage.module.scss';
+import styles from '~/components/BookDetailsPage/BookDetailsSection.module.scss';
 import commonStyles from '~/commonStyles.module.scss';
 import { useNavigate } from 'react-router-dom';
 const {
@@ -26,8 +25,6 @@ function BookDetailsPageLoader() {
   };
   return (
     <div className={root}>
-      <TopBar />
-
       <div className={bookDataContainerStyle}>
         <div className={clsx(loaderAnimation, coverImageContainerStyle)}>
           <div className={coverImageStyle} />

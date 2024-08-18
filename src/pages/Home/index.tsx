@@ -6,29 +6,34 @@ import useModal from 'src/hooks/useModal';
 import styles from '~/pages/Home.module.scss';
 const { homeRoot } = styles;
 
-export type bookModalStateType = {
+export type bookManageModalStateType = {
   type?: 'edit' | 'add';
   bookId?: number;
 };
 
 function Home() {
-  const [bookModalOpen, setBookModalOpen, onBookModalClose] = useModal();
-  const [bookModalState, setBookModalState] = useState<bookModalStateType>({});
+  const [bookManageModalOpen, setBookManageModalOpen, onBookManageModalClose] =
+    useModal();
+  const [bookManageModalState, setBookManageModalState] =
+    useState<bookManageModalStateType>({});
 
-  const handleBookModalOpen = ({ type, bookId }: bookModalStateType) => {
-    setBookModalState({ type, bookId });
-    setBookModalOpen(true);
+  const handleBookManageModalOpen = ({
+    type,
+    bookId,
+  }: bookManageModalStateType) => {
+    setBookManageModalState({ type, bookId });
+    setBookManageModalOpen(true);
   };
 
   return (
     <div className={homeRoot}>
-      <TopBar handleBookModalOpen={handleBookModalOpen} />
-      <BookList handleBookModalOpen={handleBookModalOpen} />
+      <TopBar handleBookManageModalOpen={handleBookManageModalOpen} />
+      <BookList handleBookManageModalOpen={handleBookManageModalOpen} />
 
       <BookManageModal
-        open={bookModalOpen}
-        onClose={onBookModalClose}
-        bookModalState={bookModalState}
+        open={bookManageModalOpen}
+        onClose={onBookManageModalClose}
+        bookManageModalState={bookManageModalState}
       />
     </div>
   );
