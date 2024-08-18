@@ -9,7 +9,7 @@ import useLocalStorage from 'src/hooks/useLocalStorage';
 import { bookManageModalStateType } from 'src/pages/Home';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/store';
-import BookCardLoader from '../BookCard/loader';
+import BookCardLoader from 'src/components/BookBrowser/BookCard/loader';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 
