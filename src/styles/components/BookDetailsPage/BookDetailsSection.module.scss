@@ -79,6 +79,65 @@
                 width: 30%;
             }
         }
+
+        .bookActionsContainer {
+            display: flex;
+            border-top: 1px solid base.$borderColorLight;
+            overflow: hidden;
+            gap: 0.5rem;
+            padding-bottom: 1rem;
+
+            .actionButtonStyle {
+                display: inline-block;
+                padding: 0.5rem;
+                flex-grow: 1;
+                text-align: center;
+                cursor: pointer;
+                border: 1px solid base.$primaryButtonColor;
+                transition: background-color 0.2s ease;
+                min-width: 8rem;
+                background-color: base.$paper1;
+                color: base.$mainTextColor;
+                box-sizing: border-box;
+
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    background-color: base.$paper1;
+                }
+            }
+
+            .likeButtonStyle {
+                &.isLikedStyle,
+                &:hover {
+                    background-color: #ff8488;
+                    color: white;
+                }
+
+                .heartOffIconStyle {
+                    display: none;
+                }
+                &:hover {
+                    .heartIconStyle.isLikedStyle {
+                        display: none;
+                    }
+                    .heartOffIconStyle.isLikedStyle {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .deleteButtonStyle {
+                color: base.$errorColor;
+                &:hover {
+                    background-color: #ff8488;
+                    color: white;
+                }
+            }
+        }
     }
 }
 
@@ -88,4 +147,28 @@
     align-items: center;
     column-gap: 2rem;
     padding: 2rem;
+}
+
+.deleteModalContentContainer {
+    padding: 2rem !important;
+    border-radius: 1rem;
+
+    .deleteConfirmationButtonsContainer {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        margin-top: 1rem;
+        .deleteConfirmationButton {
+            padding: 0.2rem;
+            min-width: 3rem;
+            &.yesButtonStyle {
+                background-color: base.$errorColor;
+                color: white;
+            }
+        }
+    }
+}
+
+.closeButtonStyle {
+    display: none;
 }

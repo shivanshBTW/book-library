@@ -1,11 +1,19 @@
+import { LuHeart, LuHeartOff, LuPenLine, LuTrash2 } from 'react-icons/lu';
+import { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import BookDetailsPageLoader from 'src/components/BookDetailsPage/BookDetailsSection/loader';
 import Button from 'src/components/commonComponents/Button';
 import Image from 'src/components/commonComponents/Image';
+import Modal from 'react-responsive-modal';
 import { RootState } from 'src/redux/store';
+import { bookManageModalStateType } from 'src/pages/Home';
+import clsx from 'clsx';
 import { fetchBookDetails } from 'src/service/fetchBooks';
 import styles from '~/components/BookDetailsPage/BookDetailsSection.module.scss';
+import useEditDeleteBook from 'src/hooks/useEditDeleteBook';
+import useLikeBook from 'src/hooks/useLikeBook';
+import useLocalStorage from 'src/hooks/useLocalStorage';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 
@@ -19,37 +27,114 @@ const {
   authorNameText,
   descriptionText,
   dateText,
+  bookActionsContainer,
+  actionButtonStyle,
+  likeButtonStyle,
+  deleteButtonStyle,
+  isLikedStyle,
+  heartIconStyle,
+  heartOffIconStyle,
   errorContainer,
+  deleteModalContentContainer,
+  deleteConfirmationButtonsContainer,
+  deleteConfirmationButton,
+  yesButtonStyle,
+  closeButtonStyle,
 } = styles;
 
-function BookDetailsSection() {
-  const { id } = useParams();
+type BookListProps = {
+  handleBookManageModalOpen: (state: bookManageModalStateType) => void;
+};
+
+function BookDetailsSection({ handleBookManageModalOpen }: BookListProps) {
+  const { id = '' } = useParams();
   const navigate = useNavigate();
   const customBookList = useSelector(
     (state: RootState) => state?.books?.customBookList || []
   );
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const [likedList, setLikedList] = useLocalStorage<Array<number>>(
+    'likedList',
+    []
+  );
+
+  const customBookData = useMemo(
+    () => customBookList?.find((book) => book.id === Number(id)),
+    [customBookList, id]
+  );
+
   const {
-    data: bookDetails = {},
+    data: bookDetails,
     isPending,
     error,
     refetch,
   } = useQuery<BookData>({
     queryKey: [`fetchBookDetails/${id}`],
-    queryFn: () => fetchBookDetails({ id, customBookList }),
-    retry: 2,
-    retryOnMount: true,
+    queryFn: () => fetchBookDetails({ id, customBookData }),
+  });
+  const finalBookData = customBookData ? customBookData : bookDetails;
+
+  const { isBookLiked, handleToggleBookLike } = useLikeBook(
+    parseInt(id),
+    likedList,
+    setLikedList
+  );
+
+  const { handleEditButtonClicked, handleDelete } = useEditDeleteBook({
+    bookData: finalBookData,
+    handleBookManageModalOpen,
+    refetch,
+    isDetailsPage: true,
   });
 
   const handleGoToHomePage = () => {
     navigate('/', { state: { fromBook: id } });
   };
 
-  const { cover, title, author, description, publicationDate } =
-    (bookDetails as BookData) || {};
+  const { cover, title, author, description, publicationDate, isCustomBook } =
+    (finalBookData as BookData) || {};
 
   const date = new Date(publicationDate);
   const month = date.toLocaleString('default', { month: 'long' });
   const year = date.getFullYear();
+
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const onDeleteModalClose = () => {
+    setIsDeleteModalOpen(false);
+  };
+
+  const deleteModal = (
+    <Modal
+      open={isDeleteModalOpen}
+      onClose={onDeleteModalClose}
+      center
+      classNames={{
+        modal: deleteModalContentContainer,
+        closeButton: closeButtonStyle,
+        closeIcon: closeButtonStyle,
+      }}
+    >
+      <div>Are you sure you want to delete this book?</div>
+      <div className={deleteConfirmationButtonsContainer}>
+        <Button
+          onClick={handleDelete}
+          className={clsx(deleteConfirmationButton, yesButtonStyle)}
+        >
+          Yes
+        </Button>
+        <Button
+          onClick={onDeleteModalClose}
+          className={deleteConfirmationButton}
+        >
+          No
+        </Button>
+      </div>
+    </Modal>
+  );
 
   if (isPending) {
     return <BookDetailsPageLoader />;
@@ -76,6 +161,45 @@ function BookDetailsSection() {
           <div className={descriptionText}>{description}</div>
           <div className={dateText}>
             {month} {year}
+          </div>
+          <div className={bookActionsContainer}>
+            <Button
+              className={clsx(actionButtonStyle, likeButtonStyle, {
+                [isLikedStyle]: isBookLiked,
+              })}
+              onClick={handleToggleBookLike}
+            >
+              <LuHeart
+                className={clsx(heartIconStyle, {
+                  [isLikedStyle]: isBookLiked,
+                })}
+              />
+              <LuHeartOff
+                className={clsx(heartOffIconStyle, {
+                  [isLikedStyle]: isBookLiked,
+                })}
+              />
+              &nbsp; Like
+            </Button>
+            {isCustomBook ? (
+              <>
+                <Button
+                  className={actionButtonStyle}
+                  onClick={handleEditButtonClicked}
+                >
+                  <LuPenLine />
+                  &nbsp; Edit
+                </Button>
+                <Button
+                  className={clsx(actionButtonStyle, deleteButtonStyle)}
+                  onClick={handleDeleteClick}
+                >
+                  <LuTrash2 />
+                  &nbsp; Delete
+                </Button>
+              </>
+            ) : null}
+            {deleteModal}
           </div>
           <Button onClick={handleGoToHomePage}>Go Back</Button>
         </div>

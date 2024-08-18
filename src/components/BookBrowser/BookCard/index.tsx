@@ -56,10 +56,10 @@ const BookCard: React.FC<BookCardProps> = ({
     likedList,
     setLikedList
   );
-  const { handleEditButtonClicked, handleDelete } = useEditDeleteBook(
+  const { handleEditButtonClicked, handleDelete } = useEditDeleteBook({
     bookData,
-    handleBookManageModalOpen
-  );
+    handleBookManageModalOpen,
+  });
 
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);

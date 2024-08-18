@@ -15,14 +15,13 @@ export const fetchBooks = async () => {
 
 type fetchBookDetailsType = {
   id?: string;
-  customBookList?: Array<BookData>;
+  customBookData?: BookData;
 };
 
 export const fetchBookDetails = async ({
   id,
-  customBookList,
+  customBookData,
 }: fetchBookDetailsType) => {
-  const customBookData = customBookList?.find((book) => book.id === Number(id));
   if (customBookData) return customBookData;
 
   const url = `https://my-json-server.typicode.com/cutamar/mock/books/${id}`;
