@@ -41,7 +41,6 @@ function BookList({ handleBookManageModalOpen }: BookListProps) {
   } = useQuery<BookData[]>({
     queryKey: ['fetchBookList'],
     queryFn: fetchBooks,
-    gcTime: 30 * 60 * 1000, // 30 minutes
   });
 
   const finalList = useMemo(

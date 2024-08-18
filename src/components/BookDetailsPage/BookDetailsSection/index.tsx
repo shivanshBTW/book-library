@@ -38,7 +38,6 @@ function BookDetailsSection() {
     queryFn: () => fetchBookDetails({ id, customBookList }),
     retry: 2,
     retryOnMount: true,
-    gcTime: 30 * 60 * 1000, // 30 minutes
   });
 
   const handleGoToHomePage = () => {
