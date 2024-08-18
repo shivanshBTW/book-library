@@ -8,7 +8,8 @@ const initialState: customBookListType = {
       id: 199,
       title: 'Harry Potter Custom',
       author: 'JK Rowling',
-      description: 'Magic',
+      description:
+        'Added this custom book by default to the list to easily test the functionality',
       cover:
         'https://res.cloudinary.com/bloomsbury-atlas/image/upload/w_568,c_scale/jackets/9781408855898.jpg',
       publicationDate: '2024-08-30',
