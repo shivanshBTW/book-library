@@ -4,6 +4,8 @@ Used tanstack query for data caching.
 
 To display notifications, I used an NPM module I created called `material-react-toastify`.
 
+I added a custom book by default to make it easier to test the features,
+
 ## Scripts
 
 - `npm run dev`: Starts the development server.
