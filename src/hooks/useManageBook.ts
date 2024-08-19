@@ -2,6 +2,7 @@ import { bookManageModalStateType } from 'src/pages/Home';
 import { useDispatch } from 'react-redux';
 import { addBook, editBook } from 'src/redux/actions/books';
 import { toast } from 'material-react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 type useLikeBookReturn = {
   onSubmit: (bookData: BookData) => void;
@@ -9,9 +10,12 @@ type useLikeBookReturn = {
 
 const useManageBook = (
   { type }: bookManageModalStateType,
-  onClose: () => void
+  onClose: () => void,
+  reset: () => void
 ): useLikeBookReturn => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const onEditBook = (bookData: BookData) => {
     dispatch(editBook(bookData));
     toast.success('Book edited successfully');
@@ -29,8 +33,10 @@ const useManageBook = (
     } else {
       bookData.id = new Date().valueOf();
       onAddBook(bookData);
+      navigate(`/${bookData.id}`);
     }
     onClose();
+    reset();
   };
   return { onSubmit };
 };

@@ -29,7 +29,6 @@ function BookManageModal(props: BookManageModalProps) {
   const { open, onClose, bookManageModalState } = props;
   const { type, bookId } = bookManageModalState;
   const isEditSelected = type === 'edit';
-  const { onSubmit } = useManageBook(bookManageModalState, onClose);
   const {
     register,
     handleSubmit,
@@ -37,6 +36,7 @@ function BookManageModal(props: BookManageModalProps) {
     reset,
     formState: { errors },
   } = useForm<BookData>();
+  const { onSubmit } = useManageBook(bookManageModalState, onClose, reset);
 
   const customBookList = useSelector(
     (state: RootState) => state?.books?.customBookList || []
