@@ -13,6 +13,8 @@ const {
   bookTitleText,
   authorNameText,
   descriptionText,
+  bookActionsContainer,
+  actionButtonStyle,
   dateText,
   loaderStyle,
 } = styles;
@@ -42,6 +44,13 @@ function BookDetailsPageLoader() {
           </div>
           <div className={clsx(loaderAnimation, dateText, loaderStyle)}>
             &nbsp;
+          </div>
+          <div className={bookActionsContainer}>
+            <div
+              className={clsx(loaderAnimation, actionButtonStyle, loaderStyle)}
+            >
+              &nbsp;
+            </div>
           </div>
           <Button onClick={handleGoToHomePage}>Go Back</Button>
         </div>

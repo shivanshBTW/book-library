@@ -90,10 +90,6 @@ function BookDetailsSection({ handleBookManageModalOpen }: BookListProps) {
   const { cover, title, author, description, publicationDate, isCustomBook } =
     (finalBookData as BookData) || {};
 
-  const date = new Date(publicationDate);
-  const month = date.toLocaleString('default', { month: 'long' });
-  const year = date.getFullYear();
-
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);
   };
@@ -126,7 +122,10 @@ function BookDetailsSection({ handleBookManageModalOpen }: BookListProps) {
           <div className={authorNameText}>by {author}</div>
           <div className={descriptionText}>{description}</div>
           <div className={dateText}>
-            {month} {year}
+            {new Date(publicationDate).toLocaleString('default', {
+              month: 'long',
+              year: 'numeric',
+            })}
           </div>
           <div className={bookActionsContainer}>
             <Button
