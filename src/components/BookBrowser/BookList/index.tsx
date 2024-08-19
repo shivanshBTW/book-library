@@ -53,18 +53,17 @@ function BookList({ handleBookManageModalOpen }: BookListProps) {
     itemsPerPage,
   });
 
-  const { pageItems, isPaginationRequired, goToPage } = paginationState;
+  const { pageItems, isPaginationRequired, goToPage, findItemPage } =
+    paginationState;
 
   useEffect(() => {
     if (location.state?.fromBook) {
       const bookId = location.state?.fromBook;
       const index = finalList.findIndex((book) => book.id == bookId);
-      if (index >= 0) {
-        goToPage(Math.floor(index / itemsPerPage + 1));
-      }
+      findItemPage(index);
       navigate('/', { replace: true });
     }
-  }, [finalList, goToPage, location, navigate]);
+  }, [finalList, findItemPage, goToPage, location, navigate]);
 
   if (error)
     return (

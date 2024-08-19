@@ -19,6 +19,7 @@ export type PaginationReturn<T> = {
   isFirstPage: boolean;
   isLastPage: boolean;
   pageButtonList: number[];
+  findItemPage: (itemIndex: number) => void;
 };
 
 function usePagination<T>({
@@ -50,6 +51,12 @@ function usePagination<T>({
 
   const goToLastPage = () => {
     goToPage(totalPages);
+  };
+
+  const findItemPage = (itemIndex: number) => {
+    if (itemIndex >= 0) {
+      goToPage(Math.floor(itemIndex / itemsPerPage + 1));
+    }
   };
 
   const pageItems: T[] = useMemo(() => {
@@ -94,6 +101,7 @@ function usePagination<T>({
     goToPreviousPage,
     goToFirstPage,
     goToLastPage,
+    findItemPage,
     isPaginationRequired,
     isFirstPage,
     isLastPage,
