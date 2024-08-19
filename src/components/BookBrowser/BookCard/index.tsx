@@ -2,16 +2,15 @@
 // will take 1.7k if we use the whole library, which we won't be using
 import { LuHeart, LuHeartOff, LuPenLine, LuTrash2 } from 'react-icons/lu';
 
-import Button from 'src/components/commonComponents/Button';
 import Image from 'src/components/commonComponents/Image';
 import { Link } from 'react-router-dom';
-import Modal from 'react-responsive-modal';
 import { bookManageModalStateType } from 'src/pages/Home';
 import clsx from 'clsx';
 import styles from '~/components/BookBrowser/BookCard.module.scss';
 import useEditDeleteBook from 'src/hooks/useEditDeleteBook';
 import useLikeBook from 'src/hooks/useLikeBook';
 import { useState } from 'react';
+import BookDeleteConfirmationModal from 'src/components/commonComponents/DeleteConfirmationModal';
 
 const {
   root,
@@ -29,11 +28,6 @@ const {
   heartOffIconStyle,
   deleteButtonStyle,
   isLikedStyle,
-  deleteModalContentContainer,
-  deleteConfirmationButtonsContainer,
-  deleteConfirmationButton,
-  yesButtonStyle,
-  closeButtonStyle,
 } = styles;
 
 type BookCardProps = {
@@ -68,35 +62,6 @@ const BookCard: React.FC<BookCardProps> = ({
   const onDeleteModalClose = () => {
     setIsDeleteModalOpen(false);
   };
-
-  const deleteModal = (
-    <Modal
-      open={isDeleteModalOpen}
-      onClose={onDeleteModalClose}
-      center
-      classNames={{
-        modal: deleteModalContentContainer,
-        closeButton: closeButtonStyle,
-        closeIcon: closeButtonStyle,
-      }}
-    >
-      <div>Are you sure you want to delete this book?</div>
-      <div className={deleteConfirmationButtonsContainer}>
-        <Button
-          onClick={handleDelete}
-          className={clsx(deleteConfirmationButton, yesButtonStyle)}
-        >
-          Yes
-        </Button>
-        <Button
-          onClick={onDeleteModalClose}
-          className={deleteConfirmationButton}
-        >
-          No
-        </Button>
-      </div>
-    </Modal>
-  );
 
   return (
     <div className={root}>
@@ -148,7 +113,12 @@ const BookCard: React.FC<BookCardProps> = ({
               </div>
             </>
           ) : null}
-          {deleteModal}
+
+          <BookDeleteConfirmationModal
+            open={isDeleteModalOpen}
+            onClose={onDeleteModalClose}
+            handleDelete={handleDelete}
+          />
         </div>
       </div>
     </div>

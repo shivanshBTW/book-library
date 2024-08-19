@@ -138,27 +138,3 @@
         }
     }
 }
-
-.deleteModalContentContainer {
-    padding: 2rem !important;
-    border-radius: 1rem;
-
-    .deleteConfirmationButtonsContainer {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        margin-top: 1rem;
-        .deleteConfirmationButton {
-            padding: 0.2rem;
-            min-width: 3rem;
-            &.yesButtonStyle {
-                background-color: base.$errorColor;
-                color: white;
-            }
-        }
-    }
-}
-
-.closeButtonStyle {
-    display: none;
-}

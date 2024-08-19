@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import BookDetailsPageLoader from 'src/components/BookDetailsPage/BookDetailsSection/loader';
 import Button from 'src/components/commonComponents/Button';
 import Image from 'src/components/commonComponents/Image';
-import Modal from 'react-responsive-modal';
 import { RootState } from 'src/redux/store';
 import { bookManageModalStateType } from 'src/pages/Home';
 import clsx from 'clsx';
@@ -16,6 +15,7 @@ import useLikeBook from 'src/hooks/useLikeBook';
 import useLocalStorage from 'src/hooks/useLocalStorage';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
+import BookDeleteConfirmationModal from 'src/components/commonComponents/DeleteConfirmationModal';
 
 const {
   root,
@@ -35,11 +35,6 @@ const {
   heartIconStyle,
   heartOffIconStyle,
   errorContainer,
-  deleteModalContentContainer,
-  deleteConfirmationButtonsContainer,
-  deleteConfirmationButton,
-  yesButtonStyle,
-  closeButtonStyle,
 } = styles;
 
 type BookListProps = {
@@ -107,35 +102,6 @@ function BookDetailsSection({ handleBookManageModalOpen }: BookListProps) {
     setIsDeleteModalOpen(false);
   };
 
-  const deleteModal = (
-    <Modal
-      open={isDeleteModalOpen}
-      onClose={onDeleteModalClose}
-      center
-      classNames={{
-        modal: deleteModalContentContainer,
-        closeButton: closeButtonStyle,
-        closeIcon: closeButtonStyle,
-      }}
-    >
-      <div>Are you sure you want to delete this book?</div>
-      <div className={deleteConfirmationButtonsContainer}>
-        <Button
-          onClick={handleDelete}
-          className={clsx(deleteConfirmationButton, yesButtonStyle)}
-        >
-          Yes
-        </Button>
-        <Button
-          onClick={onDeleteModalClose}
-          className={deleteConfirmationButton}
-        >
-          No
-        </Button>
-      </div>
-    </Modal>
-  );
-
   if (isPending) {
     return <BookDetailsPageLoader />;
   }
@@ -199,7 +165,12 @@ function BookDetailsSection({ handleBookManageModalOpen }: BookListProps) {
                 </Button>
               </>
             ) : null}
-            {deleteModal}
+
+            <BookDeleteConfirmationModal
+              open={isDeleteModalOpen}
+              onClose={onDeleteModalClose}
+              handleDelete={handleDelete}
+            />
           </div>
           <Button onClick={handleGoToHomePage}>Go Back</Button>
         </div>
