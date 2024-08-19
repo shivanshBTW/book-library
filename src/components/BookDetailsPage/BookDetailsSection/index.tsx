@@ -37,9 +37,9 @@ const {
   errorContainer,
 } = styles;
 
-type BookListProps = {
+interface BookListProps {
   handleBookManageModalOpen: (state: bookManageModalStateType) => void;
-};
+}
 
 function BookDetailsSection({ handleBookManageModalOpen }: BookListProps) {
   const { id = '' } = useParams();

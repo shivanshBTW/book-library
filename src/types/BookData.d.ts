@@ -1,4 +1,4 @@
-type BookData = {
+interface BookData {
   id: number;
   title: string;
   author: string;
@@ -6,4 +6,4 @@ type BookData = {
   cover: string;
   publicationDate: string;
   isCustomBook?: boolean;
-};
+}

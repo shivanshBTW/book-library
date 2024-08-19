@@ -4,9 +4,9 @@ import { bookManageModalStateType } from 'src/pages/Home';
 import styles from '~/components/commonComponents/topBar.module.scss';
 const { root, headerIcon } = styles;
 
-type TopBarProps = {
+interface TopBarProps {
   handleBookManageModalOpen?: (state: bookManageModalStateType) => void;
-};
+}
 
 function TopBar({ handleBookManageModalOpen }: TopBarProps) {
   const handleAddBookOpen = () => {

@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import styles from '~/components/commonComponents/StickyComponent.module.scss';
 const { stickyRoot } = styles;
 
-type StickyComponentProps = {
+interface StickyComponentProps {
   children: React.ReactNode;
-};
+}
 
 const StickyComponent = ({ children }: StickyComponentProps) => {
   const [isSticky, setIsSticky] = useState(false);

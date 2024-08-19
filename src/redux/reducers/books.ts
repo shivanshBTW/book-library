@@ -1,6 +1,6 @@
-type customBookListType = {
+interface customBookListType {
   customBookList: BookData[];
-};
+}
 
 const initialState: customBookListType = {
   customBookList: [
@@ -18,10 +18,10 @@ const initialState: customBookListType = {
   ],
 };
 
-type customBookActionType = {
+interface customBookActionType {
   type: string;
   payload: BookData;
-};
+}
 
 const booksReducer = (
   state: customBookListType = initialState,

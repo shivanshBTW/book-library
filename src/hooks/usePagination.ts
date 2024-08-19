@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 
-type PaginationProps<T> = {
+interface PaginationProps<T> {
   itemList: T[];
   itemsPerPage?: number;
   showAllPages?: boolean;
-};
+}
 
-export type PaginationReturn<T> = {
+export interface PaginationReturn<T> {
   pageItems: T[];
   totalPages: number;
   currentPage: number;
@@ -20,7 +20,7 @@ export type PaginationReturn<T> = {
   isLastPage: boolean;
   pageButtonList: number[];
   findItemPage: (itemIndex: number) => void;
-};
+}
 
 function usePagination<T>({
   itemList,

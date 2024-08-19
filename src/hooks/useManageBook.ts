@@ -4,9 +4,9 @@ import { addBook, editBook } from 'src/redux/actions/books';
 import { toast } from 'material-react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-type useLikeBookReturn = {
+interface useLikeBookReturn {
   onSubmit: (bookData: BookData) => void;
-};
+}
 
 const useManageBook = (
   { type }: bookManageModalStateType,

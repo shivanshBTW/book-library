@@ -1,9 +1,9 @@
 import { toast } from 'material-react-toastify';
 
-type useLikeBookReturn = {
+interface useLikeBookReturn {
   isBookLiked: boolean;
   handleToggleBookLike: () => void;
-};
+}
 
 const useLikeBook = (
   id: number,

@@ -6,10 +6,10 @@ import useModal from 'src/hooks/useModal';
 import styles from '~/pages/Home.module.scss';
 const { homeRoot } = styles;
 
-export type bookManageModalStateType = {
+export interface bookManageModalStateType {
   type?: 'edit' | 'add';
   bookId?: number;
-};
+}
 
 function Home() {
   const [bookManageModalOpen, setBookManageModalOpen, onBookManageModalClose] =

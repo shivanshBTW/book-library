@@ -13,10 +13,10 @@ export const fetchBooks = async () => {
   return response?.data || [];
 };
 
-type fetchBookDetailsType = {
+interface fetchBookDetailsType {
   id?: string;
   customBookData?: BookData;
-};
+}
 
 export const fetchBookDetails = async ({
   id,

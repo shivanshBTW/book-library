@@ -15,9 +15,9 @@ import { useEffect, useMemo } from 'react';
 
 const { root, cardListContainer, errorContainer } = styles;
 
-type BookListProps = {
+interface BookListProps {
   handleBookManageModalOpen: (state: bookManageModalStateType) => void;
-};
+}
 
 function BookList({ handleBookManageModalOpen }: BookListProps) {
   const location = useLocation();

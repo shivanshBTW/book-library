@@ -30,12 +30,12 @@ const {
   isLikedStyle,
 } = styles;
 
-type BookCardProps = {
+interface BookCardProps {
   bookData: BookData;
   likedList: number[];
   setLikedList: (likedList: number[]) => void;
   handleBookManageModalOpen: (state: bookManageModalStateType) => void;
-};
+}
 
 const BookCard: React.FC<BookCardProps> = ({
   bookData,

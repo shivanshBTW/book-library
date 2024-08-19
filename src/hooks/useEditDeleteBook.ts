@@ -4,17 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { bookManageModalStateType } from 'src/pages/Home';
 import { deleteBook } from 'src/redux/actions/books';
 
-type useEditDeleteBookProps = {
+interface useEditDeleteBookProps {
   bookData?: BookData;
   handleBookManageModalOpen: (state: bookManageModalStateType) => void;
   isDetailsPage?: boolean;
   refetch?: () => void;
-};
+}
 
-type useEditDeleteBookReturn = {
+interface useEditDeleteBookReturn {
   handleEditButtonClicked: () => void;
   handleDelete: () => void;
-};
+}
 
 const useEditDeleteBook = ({
   bookData,
