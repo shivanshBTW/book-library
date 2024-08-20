@@ -1,28 +1,29 @@
 import App from 'src/App';
 import BookDetailsPage from 'src/pages/BookDetailsPage';
 import Home from 'src/pages/Home';
-import { createBrowserRouter } from 'react-router-dom';
-
-export const routes = {
-  home: '/',
-};
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: routes.home,
+    path: '/',
     element: <App />,
     children: [
       {
-        path: '',
-        element: <Home />,
-      },
-      {
-        path: ':id',
-        element: <BookDetailsPage />,
+        path: 'books',
+        children: [
+          {
+            path: '',
+            element: <Home />,
+          },
+          {
+            path: ':id',
+            element: <BookDetailsPage />,
+          },
+        ],
       },
       {
         path: '*',
-        element: <div>404 - Page not found</div>,
+        element: <Navigate to={'/books'} />,
       },
     ],
   },

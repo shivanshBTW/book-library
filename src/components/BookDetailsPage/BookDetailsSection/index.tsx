@@ -84,7 +84,7 @@ function BookDetailsSection({ handleBookManageModalOpen }: BookListProps) {
   });
 
   const handleGoToHomePage = () => {
-    navigate('/', { state: { fromBook: id } });
+    navigate('/books', { state: { fromBook: id } });
   };
 
   const { cover, title, author, description, publicationDate, isCustomBook } =

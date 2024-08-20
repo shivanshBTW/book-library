@@ -61,7 +61,7 @@ function BookList({ handleBookManageModalOpen }: BookListProps) {
       const bookId = location.state?.fromBook;
       const index = finalList.findIndex((book) => book.id == bookId);
       findItemPage(index);
-      navigate('/', { replace: true });
+      navigate('/books', { replace: true });
     }
   }, [finalList, findItemPage, goToPage, location, navigate]);
 

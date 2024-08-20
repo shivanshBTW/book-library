@@ -33,7 +33,7 @@ const useManageBook = (
     } else {
       bookData.id = new Date().valueOf();
       onAddBook(bookData);
-      navigate(`/${bookData.id}`);
+      navigate(`/books/${bookData.id}`);
     }
     onClose();
     reset();

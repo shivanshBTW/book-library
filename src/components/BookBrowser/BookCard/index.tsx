@@ -66,7 +66,7 @@ const BookCard: React.FC<BookCardProps> = ({
   return (
     <div className={root}>
       <div className={container}>
-        <Link to={`/${id}`} className={topSectionContainer}>
+        <Link to={`/books/${id}`} className={topSectionContainer}>
           <div>
             <div className={coverImageContainer}>
               <Image src={cover} alt={'cover'} className={coverImage} />

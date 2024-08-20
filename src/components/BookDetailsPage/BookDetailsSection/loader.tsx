@@ -23,7 +23,7 @@ const { loaderAnimation } = commonStyles;
 function BookDetailsPageLoader() {
   const navigate = useNavigate();
   const handleGoToHomePage = () => {
-    navigate('/');
+    navigate('/books');
   };
   return (
     <div className={root}>

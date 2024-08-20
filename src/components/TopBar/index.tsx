@@ -18,7 +18,7 @@ function TopBar({ handleBookManageModalOpen }: TopBarProps) {
   return (
     <div className={containerRoot}>
       <div className={root}>
-        <Link to="/" replace className={headerIcon}>
+        <Link to="/books" replace className={headerIcon}>
           BOOK LIBRARY
         </Link>
         {handleBookManageModalOpen ? (

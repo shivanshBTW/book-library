@@ -40,7 +40,7 @@ const useEditDeleteBook = ({
       dispatch(deleteBook(bookData));
       toast.success('Book deleted successfully');
       if (isDetailsPage) {
-        navigate('/');
+        navigate('/books');
       }
     }
   };
