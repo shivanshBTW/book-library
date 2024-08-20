@@ -92,10 +92,10 @@
                 flex-grow: 1;
                 text-align: center;
                 cursor: pointer;
-                border: 1px solid base.$primaryButtonColor;
+                border: 1px solid base.$secondaryTextColor;
                 transition: background-color 0.2s ease;
                 min-width: 8rem;
-                background-color: base.$paper1;
+                background-color: base.$background;
                 color: base.$mainTextColor;
                 box-sizing: border-box;
 
