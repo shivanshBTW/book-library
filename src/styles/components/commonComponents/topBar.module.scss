@@ -1,22 +1,42 @@
 @use "~/base";
 
-.root {
-    background-color: rgba(255, 255, 255, 0.8);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    border-style: solid;
-    border-color: base.$borderColorLight;
-    border-width: 0;
-    border-bottom-width: thin;
-    backdrop-filter: blur(8px);
+.containerRoot {
+    padding-top: 4.5rem;
+    .root {
+        background-color: rgba(255, 255, 255, 0.8);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        border-style: solid;
+        border-color: base.$borderColorLight;
+        border-width: 0;
+        border-bottom-width: thin;
+        backdrop-filter: blur(8px);
+        margin: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
 
-    .headerIcon {
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        text-decoration: none;
-        color: base.$mainTextColor;
+        position: fixed;
+        top: 0;
+        width: -webkit-fill-available;
+        width: -moz-available;
+        z-index: 1100;
+
+        .headerIcon {
+            padding: 0 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: base.$mainTextColor;
+
+            @include base.h4;
+            font-weight: base.$fontWeightBold;
+            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
     }
 }

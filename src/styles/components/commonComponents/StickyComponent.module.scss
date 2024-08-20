@@ -4,7 +4,9 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background: base.$background;
+    background: base.$paper;
     box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 1000;
 }
