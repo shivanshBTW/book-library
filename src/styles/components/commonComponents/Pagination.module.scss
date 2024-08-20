@@ -26,12 +26,17 @@
     outline: none;
     cursor: pointer;
     @include base.button;
-    background: base.$primaryButtonColor;
-    color: base.$primaryButtonTextColor;
+    background: base.$paper1;
+    color: base.$mainTextColor;
+    box-shadow: inset 0px 0px 0px 1px base.$tertiaryTextColor;
     border-radius: 5px;
     &.selectedButtonStyle {
         background: base.$primaryButtonColorDisabled;
-        color: base.$mainTextColor;
-        box-shadow: inset 0px 0px 0px 2px base.$primaryButtonColor;
+        color: base.$primaryButtonColor;
+        box-shadow: inset 0px 0px 0px 1px base.$primaryButtonColor;
+    }
+
+    &:disabled {
+        background: base.$paper1;
     }
 }
