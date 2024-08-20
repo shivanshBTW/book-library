@@ -5,7 +5,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '',
     element: <App />,
     children: [
       {
@@ -21,9 +21,10 @@ const router = createBrowserRouter([
           },
         ],
       },
+
       {
-        path: '*',
-        element: <Navigate to={'/books'} />,
+        index: true,
+        element: <Navigate to={'/books'} replace />,
       },
     ],
   },
