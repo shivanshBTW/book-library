@@ -38,5 +38,6 @@
 
     &:disabled {
         background: base.$paper1;
+        box-shadow: unset;
     }
 }
