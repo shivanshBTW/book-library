@@ -29,7 +29,7 @@ const useManageBook = (
   const onSubmit = (bookData: BookData) => {
     bookData.isCustomBook = true;
     if (type === 'edit') {
-      onEditBook(bookData);
+      onEditBook(bookDataa);
     } else {
       bookData.id = new Date().valueOf();
       onAddBook(bookData);
